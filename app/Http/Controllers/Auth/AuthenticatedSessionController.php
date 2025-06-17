@@ -29,7 +29,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (auth()->user()->hasRole('teacher') && auth()->user()->status !== 'approved') {
+            auth()->logout();
+            return redirect()->route('login')->withErrors([
+                'email' => 'لم تتم الموافقة على حسابك بعد من قبل الإدارة.',
+            ]);
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
+
     }
 
     /**

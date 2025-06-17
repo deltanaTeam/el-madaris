@@ -17,7 +17,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'name_ar' => env('APP_NAME_AR', ' لارافيل'),
+    'name_en' => env('APP_NAME_EN', 'Laravel'),
     /*
     |--------------------------------------------------------------------------
     | Application Environment

@@ -42,4 +42,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function taughtSubjects()
+    {
+        return $this->hasMany(Subject::class, 'teacher_id');
+    }
+
+    public function enrolledSubjects()
+    {
+        return $this->belongsToMany(Subject::class, 'subject_students', 'student_id', 'subject_id');
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(SubjectRating::class, 'student_id');
+    }
 }
