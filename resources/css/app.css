@@ -90,7 +90,9 @@
   .text-subheader {
     @apply text-lime-800;
   }
-
+   .side-theme{
+     @apply bg-lime-300/50 text-lime-700 my-5 rounded-lg;
+   }
   .bg-body {
     @apply bg-lime-100;
   }
@@ -212,6 +214,9 @@
   .dark .bg-theme-2{
     @apply bg-teal-600;
   }
+  .dark .side-theme{
+     @apply bg-teal-600 text-teal-100 mb-5;
+   }
   .dark .bg-theme-3{
     @apply bg-teal-400;
   }

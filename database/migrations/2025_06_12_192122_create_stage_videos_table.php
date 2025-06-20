@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('subject_stage_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->string('video_path'); // ممكن URL أو مسار على السيرفر
+            $table->string('video_path'); 
             $table->timestamps();
         });
     }

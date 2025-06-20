@@ -15,7 +15,7 @@ return new class extends Migration
              $table->id();
              $table->foreignId('student_id')->constrained('users')->onDelete('cascade');
              $table->foreignId('subject_id')->constrained()->onDelete('cascade');
-             $table->tinyInteger('rating'); // من 1 إلى 5
+             $table->tinyInteger('rating');
              $table->text('comment')->nullable();
 
              $table->unique(['student_id', 'subject_id']);

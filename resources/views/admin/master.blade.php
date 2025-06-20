@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-لوحة التحكم
-@endsection
+@section('title', __('lang.dasboard'))
 @section('content')
 <!--begin::Row-->
 <div class="row" dir="rtl">

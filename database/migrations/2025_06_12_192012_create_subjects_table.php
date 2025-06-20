@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->foreignId('teacher_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('grade_id')->constrained('grades')->onDelete('cascade');
-            $table->boolean('is_paid')->default(false);
+            $table->boolean('is_free')->default(false);
             $table->decimal('price',8,2)->nullable();
 
             $table->timestamps();

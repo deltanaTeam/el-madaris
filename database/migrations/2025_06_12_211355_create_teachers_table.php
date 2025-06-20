@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // ربط المدرس بالمستخدم
-            $table->string('cv')->nullable();          // رابط الـ CV
-            $table->text('experience')->nullable();    // الخبرة
-            $table->string('specialization')->nullable(); // التخصص
-            $table->string('address')->nullable();     // العنوان
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+            $table->string('cv')->nullable();
+            $table->text('experience')->nullable();
+            $table->string('specialization')->nullable();
+            $table->string('address')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

@@ -92,10 +92,8 @@
 <section id="hero" tabindex="-1" class="text-center mb-16 select-none pb-2">
   <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-5 gap-4 bg-gray-50 rounded-[4vw]">
 
-    <!-- صورة + نص فوقها (في الأعلى) -->
 
 
-    <!-- النص بجانب الصورة -->
     <div class="md:col-span-2 sm:grid-cols-5 text-lime-500 p-8 md:p-12 flex flex-col justify-center items-center text-center">
       <div class=" top-4  transform  w-full ">
         <div class=" bg-opacity-50 p-4 rounded-lg max-w-2xl mx-auto text-center">
@@ -172,66 +170,50 @@
     </div>
   </section>
 --}}
-<section id="courses" aria-labelledby="coursesTitle" class="mb-16 ">
+<div class="w-full  my-3"></div>
+<section id="courses" aria-labelledby="coursesTitle" class="mb-16  ">
   <h3 id="coursesTitle" class="text-3xl font-bold mb-8  text-h3 tracking-wide select-none">{{__('lang.featured courses')}}</h3>
 
-<div class="slideshow-container gap-4 md:gap-3">
+<div class="slideshow-container flex flex-wrap justify-center items-center gap-4 md:gap-3  ">
+  @php
+    $subject_count = count($subjects);
+  @endphp
+  @forelse($subjects as $subject)
+        @php
+          $path = ($subject->image) ? asset('storage/'.$subject->image)  : asset('images/subject.jpg')  ;
+        @endphp
+    
+    <div class="mySlides ">
+      <article tabindex="0" aria-label="Photography Basics Course" class=" md:max-w-sm sm:max-w-xs bg-white rounded-[4vw] shadow-md overflow-hidden cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600 mx-1">
+          <img src="{{$path}}" alt="Camera on tripod" class="w-full h-64 object-cover rounded-t-xl" />
+          <div class="p-6 flex flex-col h-full">
+            <h4 class="text-xl font-extrabold bg-white-text mb-2">{{$subject->name}}</h4>
+            <p class="bg-white-text flex-grow">{{ Str::limit($subject->description, 100) }}</p>
+            <div class=" flex flex-nowrap justify-between items-center overflow-x-auto gap-2  ">
+                <div class=" flex flex-nowrap justify-between items-center">
+                  <span class="text-gray-600 p-1 px-2 rounded-full m-2">@include('icons.users')</span>
+                  <span class="text-gray-600  p-1 px-2 rounded-full m-2">{{$subject->students_count}}</span>
+                  
+                </div>
+                  <div class=" flex flex-nowrap justify-between items-center">
+                  <span class="text-gray-600 p-1 px-2 rounded-full m-2">@include('icons.stage')</span>
+                  <span class="text-gray-600 p-1 px-2 rounded-full m-2">{{$subject->stages_count}}</span>
+                  
+                </div>
+              </div>
+            
+            <button class="btn-enroll bg-theme-3 hover:bg-theme-2 text-white text-lg font-bold">{{__('lang.Enroll Now')}}</button>
 
-
-  <div class="mySlides ">
-    <article tabindex="0" aria-label="Full Stack Web Development Course " class=" md:max-w-sm sm:max-w-xs  bg-white rounded-[4vw] shadow-md overflow-hidden cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60" alt="Laptop coding" class="w-full h-64 object-cover rounded-t-xl" />
-    <div class="p-6 flex flex-col h-full">
-      <h4 class="text-xl font-extrabold bg-white-text mb-2">{{__('Full Stack Web Development1')}}</h4>
-      <p class="bg-white-text flex-grow">Learn to build modern web applications with HTML, CSS, JavaScript, and backend technologies.</p>
-        <button class="btn-enroll">Enroll Now</button>
+          </div>
+        </article>
     </div>
-  </article>
-  </div>
-  <div class="mySlides ">
-    <article tabindex="0" aria-label="Full Stack Web Development Course " class=" md:max-w-sm sm:max-w-xs bg-white rounded-[4vw] shadow-md overflow-hidden cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60" alt="Laptop coding" class="w-full h-64 object-cover rounded-t-xl" />
-    <div class="p-6 flex flex-col h-full">
-      <h4 class="text-xl font-extrabold bg-white-text mb-2">{{__('Full Stack Web Development2')}}</h4>
-      <p class="bg-white-text flex-grow">Learn to build modern web applications with HTML, CSS, JavaScript, and backend technologies.</p>
-      <button class="btn-enroll">Enroll Now</button>
-
-    </div>
-  </article>
-  </div>
-  <div class="mySlides ">
-    <article tabindex="0" aria-label="Full Stack Web Development Course " class=" md:max-w-sm  sm:max-w-xs bg-white rounded-[4vw] shadow-md overflow-hidden cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60" alt="Laptop coding" class="w-full h-64 object-cover rounded-t-xl" />
-    <div class="p-6 flex flex-col h-full">
-      <h4 class="text-xl font-extrabold bg-white-text mb-2">{{__('Full Stack Web Development3')}}</h4>
-      <p class="bg-white-text flex-grow">Learn to build modern web applications with HTML, CSS, JavaScript, and backend technologies.</p>
-      <button class="btn-enroll">Enroll Now</button>
-
-    </div>
-  </article>
-  </div>
-  <div class="mySlides">
-    <article tabindex="0" aria-label="Digital Marketing Masterclass" class="md:max-w-sm  sm:max-w-xs bg-white rounded-[4vw] shadow-md overflow-hidden cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-     <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=60" alt="Digital marketing workspace" class="w-full h-64 object-cover rounded-t-xl" />
-     <div class="p-6 flex flex-col h-full">
-       <h4 class="text-xl font-extrabold bg-white-text mb-2">Digital Marketing Masterclass4</h4>
-       <p class="bg-white-text flex-grow">Master SEO, social media marketing, and content strategy to grow your brand effectively.</p>
-       <button class="btn-enroll">Enroll Now</button>
-
-     </div>
-   </article>
-   </div>
-  <div class="mySlides">
-     <article tabindex="0" aria-label="Photography Basics Course" class=" md:max-w-sm sm:max-w-xs bg-white rounded-[4vw] shadow-md overflow-hidden cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600 mx-1">
-     <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=60" alt="Camera on tripod" class="w-full h-64 object-cover rounded-t-xl" />
-     <div class="p-6 flex flex-col h-full">
-       <h4 class="text-xl font-extrabold bg-white-text mb-2">Photography Basics 5</h4>
-       <p class="bg-white-text flex-grow">Get hands-on with composition, lighting, and editing techniques to take stunning photos.</p>
-       <button class="btn-enroll">Enroll Now</button>
-
-     </div>
-  </article>
-  </div>
+    
+  @empty
+        <p>{{__('lang.No Grades Added Yet')}}</p>
+  @endforelse
+  
+  
+  
 
   <!-- <div class="mySlides">Slide 5: Cloud</div>
   <div class="mySlides">Slide 6: Security</div> -->
@@ -239,58 +221,45 @@
   <a class="next rounded-full" onclick="plusSlides(1)">&#10095;</a>
 
 </div>
-<div class="dot-container">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-  <span class="dot" onclick="currentSlide(4)"></span>
-  <span class="dot" onclick="currentSlide(5)"></span>
-</div>
+  {{-- <div class="dot-container">
+    @for ($i=0 ;$i<$subject_count ;$i++ )
+    <span class="dot" onclick='currentSlide("{{$i}}")'></span>
+
+    @endfor
+    
+  </div> --}}
   </section>
+  <div class="w-full  my-3"></div>
   <!-- Featured Teachers -->
-  <section id="teachers" aria-labelledby="teachersTitle" class="mb-16">
+  <section id="teachers" aria-labelledby="teachersTitle" class="mb-16 w-full">
     <h3 id="teachersTitle" class="text-3xl font-bold mb-8 text-h3  tracking-wide select-none">{{__('lang.Meet Our Teachers')}}</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-      <article tabindex="0" aria-label="Teacher John Doe, Web Developer" class="bg-white rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
+    <div class=" w-full flex flex-wrap justify-center items-center gap-6 lg:gap-12">
+      <article tabindex="0" aria-label="Teacher John Doe, Web Developer" class="bg-white  w-full sm:w-80 min-w-64 rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
         <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Photo of John Doe" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
         <h4 class="text-xl font-extrabold bg-white-text  mb-2">John Doe</h4>
         <p class="bg-white-text">Experienced full stack developer with a passion for teaching modern web technologies and best practices.</p>
       </article>
 
-      <article tabindex="0" aria-label="Teacher John Doe, Web Developer" class="bg-white rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
+      <article tabindex="0" aria-label="Teacher John Doe, Web Developer" class="bg-white w-full sm:w-80 min-w-64 rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
         <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Photo of John Doe" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
         <h4 class="text-xl font-extrabold bg-white-text  mb-2">John Doe</h4>
         <p class="bg-white-text">Experienced full stack developer with a passion for teaching modern web technologies and best practices.</p>
       </article>
 
-      <article tabindex="0" aria-label="Teacher Mary Smith, Digital Marketing Expert" class="bg-white rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
+      <article tabindex="0" aria-label="Teacher Mary Smith, Digital Marketing Expert" class="bg-white w-full sm:w-80 min-w-64 rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
         <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Photo of Mary Smith" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
         <h4 class="text-xl font-extrabold bg-white-text mb-2">Mary Smith</h4>
         <p class="bg-white-text">Marketing strategist specializing in digital campaigns, SEO optimization, and brand growth storytelling.</p>
       </article>
 
-      <article tabindex="0" aria-label="Teacher Mary Smith, Digital Marketing Expert" class="bg-white rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Photo of Mary Smith" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
-        <h4 class="text-xl font-extrabold bg-white-text mb-2">Mary Smith</h4>
-        <p class="bg-white-text">Marketing strategist specializing in digital campaigns, SEO optimization, and brand growth storytelling.</p>
-      </article>
+      
 
-      <article tabindex="0" aria-label="Teacher Kevin Lee, Photographer" class="bg-white rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Photo of Kevin Lee" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
-        <h4 class="text-xl font-extrabold bg-white-text mb-2">Kevin Lee</h4>
-        <p class="bg-white-text">Professional photographer and educator teaching technical skills and creative vision for all levels.</p>
-      </article>
-
-      <article tabindex="0" aria-label="Teacher Kevin Lee, Photographer" class="bg-white rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Photo of Kevin Lee" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
-        <h4 class="text-xl font-extrabold bg-white-text mb-2">Kevin Lee</h4>
-        <p class="bg-white-text">Professional photographer and educator teaching technical skills and creative vision for all levels.</p>
-      </article>
+      
     </div>
   </section>
-
+  <div class="w-full  my-3"></div>
   <!-- About Section -->
-  <section id="about" aria-labelledby="aboutTitle" class=" select-text">
+  <section id="about" aria-labelledby="aboutTitle" class=" select-text ">
     <h3 id="aboutTitle" class="text-3xl font-bold mb-6 text-h3 tracking-wide">{{__('lang.what we do')}}</h3>
     <div class="grid  sm:grid-cols-2  sm:grid-cols-5 max-sm:grid-cols-1 gap-8  sm:gap-3">
       <div class="rounded-[4vw]  sm:col-span-3  p-6 text-theme-1 bg-white">
@@ -316,6 +285,7 @@
     </div>
 
   </section>
+  <div class="w-full  my-4"></div>
   <section id="why" aria-labelledby="whyTitle" class=" mx-auto px-2 select-text py-12">
       <div class=" mx-auto px-2 text-center">
           <h2 class="text-4xl font-bold mb-6  text-h2 mb-6">{{__('lang.Why choose our platform?')}}</h2>

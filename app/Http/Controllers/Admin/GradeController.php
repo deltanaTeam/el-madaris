@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Grade;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\DataTables\GradeDataTable;
+use App\Http\Controllers\Controller;
 
 class GradeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    
+
+    public function index(GradeDataTable $dataTable)
     {
-      $grades = Grade::latest()->get();
-      return view('admin.grades.index', compact('grades'));
+      $data['title'] = 'grades';
+
+      return $dataTable->render('admin.index',compact('data'));
     }
 
     /**
@@ -31,13 +36,14 @@ class GradeController extends Controller
     public function store(Request $request)
     {
       $request->validate([
-          'name' => 'required|unique:grades,name',
-          'description' => 'nullable',
+        'name_ar' => ['required', 'string', 'max:90','unique:grades,name->ar'],
+        'name_en' => ['required', 'string', 'max:90','unique:grades,name->en'],
       ]);
-
-      Grade::create($request->only('name', 'description'));
-
-      return redirect()->route('admin.grades.index');
+      $grade = new Grade;
+      $grade ->setTranslation('name', 'en',$request->name_en );
+      $grade ->setTranslation('name', 'ar',$request->name_ar );
+      $grade->save();
+      return redirect()->route('admin.grades.index')->with('success','saved successfully');
     }
 
     /**
@@ -63,13 +69,16 @@ class GradeController extends Controller
     public function update(Request $request, Grade $grade)
     {
       $request->validate([
-          'name' => 'required|unique:grades,name,' . $grade->id,
-          'description' => 'nullable',
+        'name_ar' => ['required', 'string', 'max:90',Rule::unique('grades','name->ar')->ignore($grade->id)],
+        'name_en' => ['required', 'string', 'max:90',Rule::unique('grades','name->ar')->ignore($grade->id)],
+
       ]);
 
-      $grade->update($request->only('name', 'description'));
+      $grade ->setTranslation('name', 'en',$request->name_en );
+      $grade ->setTranslation('name', 'ar',$request->name_ar );
+      $grade->save();
 
-      return redirect()->route('admin.grades.index');
+      return redirect()->route('admin.grades.index')->with('success','updated successfully');
     }
 
     /**
@@ -79,6 +88,6 @@ class GradeController extends Controller
     {
       $grade->delete();
 
-      return redirect()->route('admin.grades.index')
+      return redirect()->route('admin.grades.index')->with('success','deleted successfully');
     }
 }

@@ -15,6 +15,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
     body {
       font-family: 'Cairo', sans-serif;
+      
     }
     /* Custom focus outline for better accessibility */
     :focus-visible {

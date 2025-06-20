@@ -10,13 +10,13 @@
                  <a href="" class="button-header rounded-md px-2  transition-colors ">
                      <img class="h-12 rounded-full " src="{{asset('images/logo.PNG')}}" alt="Logo">
                  </a>
-
+                 
              </div>
 
-
+             
 
              <!-- Hamburger (Mobile) -->
-             <div class="md:hidden">
+             <div class="md:hidden flex items-start">
                  <button @click="open = !open" class="button-header focus:outline-none">
                      <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                           viewBox="0 0 24 24" stroke="currentColor">
@@ -29,7 +29,10 @@
                                d="M6 18L18 6M6 6l12 12"/>
                      </svg>
                  </button>
+                <button class="button-header mt-1 ms-1 focus:outline-none  lg:hidden sm:block" @click="toggleSidebar()"> @include('icons.intent')</button>
+
              </div>
+             
 
              <!-- Desktop Links -->
              <div class="hidden md:flex md:items-center md:space-x-6 rtl:space-x-reverse">
@@ -73,10 +76,10 @@
                   <div x-show="gradOpen"
                        @click.away="gradOpen = false"
                        class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-50">
-                       @forelse(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                       @forelse($grades as $grade)
 
-                      <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
-                         class="block px-4 py-2 hover:bg-theme-4 text-theme-2">{{ $properties['native'] }}</a>
+                      <a href="{{route('grades.show',$grade->id)}}"
+                         class="block px-4 py-2 hover:bg-theme-4 text-theme-2">{{ $grade->name }}</a>
 
                        @empty
                        @endforelse
@@ -109,10 +112,13 @@
               <div x-show="langOpen"
                    @click.away="langOpen = false"
                    class="absolute end-0 mt-2 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50">
-                  <a href=""
-                     class="block px-4 py-2 hover:bg-theme-4 text-theme-1">English</a>
-                  <a href=""
-                     class="block px-4 py-2 hover:bg-theme-4 text-theme-1">العربية</a>
+                  @forelse(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+
+                      <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
+                         class="block px-4 py-2 hover:bg-theme-4 text-theme-1">{{ $properties['native'] }}</a>
+
+                  @empty
+                  @endforelse
               </div>
            </div>
            <!-- end Language Dropdown -->
@@ -129,10 +135,13 @@
               <div x-show="gradOpen"
                    @click.away="gradOpen = false"
                    class="absolute end-0 mt-2 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50">
-                  <a href=""
-                     class="block px-4 py-2 hover:bg-theme-4 text-theme-1">English</a>
-                  <a href=""
-                     class="block px-4 py-2 hover:bg-theme-4 text-theme-1">العربية</a>
+                    @forelse($grades as $grade)
+
+                      <a href="{{route('grades.show',$grade->id)}}"
+                         class="block px-4 py-2 hover:bg-theme-4 text-theme-1">{{ $grade->name }}</a>
+
+                    @empty
+                    @endforelse
               </div>
            </div>
            <!-- end Language Dropdown -->

@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\{Subject,User};
+use App\DataTables\SubjectDataTable;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(SubjectDataTable $dataTable)
     {
-      $subjects = Subject::with('grade', 'teacher')->latest()->get();
-      return view('admin.subjects.index', compact('subjects'));
+      $data['title'] = 'subjects';
+
+      return $dataTable->render('admin.index',compact('data'));
     }
 
     /**
@@ -21,9 +25,9 @@ class SubjectController extends Controller
      */
     public function create()
     {
-      $grades = Grade::all();
-      $teachers = User::role('teacher')->get(); // باستخدام Spatie
-      return view('admin.subjects.create', compact('grades', 'teachers'));
+      //$teachers = User::role('teacher')->get(); // باستخدام Spatie
+      $teachers = User::get();
+      return view('admin.subjects.create', compact( 'teachers'));
     }
 
     /**
@@ -32,17 +36,34 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
       $request->validate([
-          'name'        => 'required',
-          'description' => 'nullable',
-          'grade_id'    => 'required|exists:grades,id',
-          'teacher_id'  => 'required|exists:users,id',
-          'is_free'     => 'required|boolean',
-          'price'       => 'nullable|numeric|min:0'
+          'name_en'        => 'required|string|max:100',
+          'name_ar'        => 'required|string|max:100',
+          'description_ar' => 'nullable|string|max:500',
+          'description_en' => 'nullable|string|max:500',
+          'grade'       => 'required|exists:grades,id',
+          'teacher'     => 'required|exists:users,id',
+          'is_free'        => 'required|boolean',
+          'price'          => 'nullable|numeric|min:0',
+          'image'          => 'nullable|image|max:10000'
       ]);
+      $image = null;
+      if ($request->hasFile('image'))
+      {
+        $image = $request->file('image')->store('subjects/images', 'public');
 
-      Subject::create($request->all());
-
-      return redirect()->route('admin.subjects.index');
+      }
+      $subject = new Subject;
+      $subject ->setTranslation('name', 'en',$request->name_en );
+      $subject ->setTranslation('name', 'ar',$request->name_ar );
+      $subject ->setTranslation('description', 'en',$request->description_en );
+      $subject ->setTranslation('description', 'ar',$request->description_ar );
+      $subject ->grade_id   = $request->grade ;
+      $subject ->teacher_id = $request->teacher ;
+      $subject ->is_free    = $request->is_free ;
+      $subject ->price      = abs($request->price) ;
+      $subject ->image      = $image;
+      $subject ->save();
+      return redirect()->route('admin.subjects.index')->with('success','saved successfully');
     }
 
     /**
@@ -50,7 +71,9 @@ class SubjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $subject = Subject::with('teacher','grade')->withAvg('ratings','rating')->withCount('students','stages')->findOrFail($id);
+        return view('admin.subjects.edit', compact('subject'));
+
     }
 
     /**
@@ -58,9 +81,8 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-      $grades = Grade::all();
-      $teachers = User::role('teacher')->get();
-      return view('admin.subjects.edit', compact('subject', 'grades', 'teachers'));
+      $teachers = User::get();
+      return view('admin.subjects.edit', compact('subject', 'teachers'));
     }
 
     /**
@@ -69,25 +91,47 @@ class SubjectController extends Controller
     public function update(Request $request, Subject $subject)
     {
       $request->validate([
-          'name'        => 'required',
-          'description' => 'nullable',
-          'grade_id'    => 'required|exists:grades,id',
-          'teacher_id'  => 'required|exists:users,id',
-          'is_free'     => 'required|boolean',
-          'price'       => 'nullable|numeric|min:0'
+           'name_en'        => 'required|string|max:100',
+          'name_ar'        => 'required|string|max:100',
+          'description_ar' => 'nullable|string|max:500',
+          'description_en' => 'nullable|string|max:500',
+          'grade'       => 'required|exists:grades,id',
+          'teacher'     => 'required|exists:users,id',
+          'is_free'        => 'required|boolean',
+          'price'          => 'nullable|numeric|min:0',
+          'image'          => 'nullable|image|max:10000'
+
       ]);
+      if ($request->hasFile('image'))
+      {
+        $image = $request->file('image')->store('subjects/images', 'public');
 
-      $subject->update($request->all());
+      }
+      $subject ->setTranslation('name', 'en',$request->name_en );
+      $subject ->setTranslation('name', 'ar',$request->name_ar );
+      $subject ->setTranslation('description', 'en',$request->description_en );
+      $subject ->setTranslation('description', 'ar',$request->description_ar );
+      $subject ->grade_id   = $request->grade ;
+      $subject ->teacher_id = $request->teacher ;
+      $subject ->is_free    = $request->is_free ;
+      $subject ->price      = abs($request->price) ;
+      $subject ->image      = $image??$subject->image;
 
-      return redirect()->route('admin.subjects.index')
+      $subject ->save();
+
+      return redirect()->route('admin.subjects.index')->with('success','updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Subject $subject)
-    {
+    { 
+      if (Storage::disk('public')->exists($subject->image))
+      {
+        Storage::disk('public')->delete($subject->image);
+      }
       $subject->delete();
-      return redirect()->route('admin.subjects.index')
+      return redirect()->route('admin.subjects.index')->with('success','deleted successfully');
     }
 }

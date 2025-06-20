@@ -2,15 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Subject extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'description', 'teacher_id', 'grade_id', 'is_paid', 'price'];
+    use HasTranslations;
 
-   public function teacher()
+    protected $fillable = ['name', 'description', 'teacher_id', 'grade_id', 'is_free', 'price','image'];
+    protected $table = 'subjects';
+    public $translatable = ['name','description'];
+   
+    public function teacher()
    {
        return $this->belongsTo(User::class, 'teacher_id');
    }

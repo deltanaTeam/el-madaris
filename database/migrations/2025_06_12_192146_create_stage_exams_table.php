@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('subject_stage_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->boolean('is_required')->default(true); // يجب اجتيازه للانتقال؟
+            $table->boolean('is_required')->default(true);
             $table->timestamps();
         });
     }

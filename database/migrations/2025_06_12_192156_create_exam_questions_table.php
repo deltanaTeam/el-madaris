@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('exam_questions', function (Blueprint $table) {
             $table->id();
-            $table->id();
             $table->foreignId('stage_exam_id')->constrained()->onDelete('cascade');
-            $table->string('type')->default('mcq'); // mcq, short, essay
+            $table->enum('type',['mcq', 'short', 'essay'])->default('mcq');
             $table->text('question_text');
-            $table->json('options')->nullable(); // لـ mcq فقط
-            $table->string('correct_option')->nullable(); // mcq و short فقط
+            $table->json('options')->nullable();
+            $table->string('correct_option')->nullable();
             $table->timestamps();
         });
     }

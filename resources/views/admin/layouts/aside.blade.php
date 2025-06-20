@@ -118,13 +118,7 @@
                         <ul class="menu-subnav">
 
 
-                          <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
-                              <a href="{{route('admin.teachers.create')}}" class="menu-link  ">
-                                  <i class="menu-bullet menu-bullet-line">
-                                  </i>
-                                  <span class="menu-text">{{__('lang.create new')}} </span>
-                              </a>
-                          </li>
+                          
 
                             <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
                                 <a href="{{route('admin.teachers.index')}}" class="menu-link  ">
@@ -164,19 +158,88 @@
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
 
-                          <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover">
-                              <a href="{{route('admin.students.create')}}" class="menu-link menu-toggle">
-                                  <i class="menu-bullet menu-bullet-line">
-                                  </i>
-                                  <span class="menu-text">{{__('lang.create new')}}</span>
-                              </a>
-                          </li>
+                          
 
 
 
 
                           <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
                               <a href="{{route('admin.students.index')}}" class="menu-link  ">
+                                  <i class="menu-bullet menu-bullet-line">
+                                  </i>
+                                  <span class="menu-text">{{__('lang.show all')}}</span>
+                              </a>
+                          </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="menu-item menu-item-submenu {{request()->routeIs('admin.subjects.*') ?'menu-item-active':''}}" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="javascript:;" class="menu-link menu-toggle">
+                         <span class="svg-icon svg-icon-primary svg-icon-2x">
+                           <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Communication/Group.svg-->
+                           @include('admin.layouts.icons.videos')
+                          </span>
+
+
+                         <span class="menu-text mx-2">{{__('lang.subjects')}}</span>
+                         <i class="menu-arrow"></i>
+                    </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+
+
+
+                          <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
+                              <a href="{{route('admin.subjects.create')}}" class="menu-link  ">
+                                  <i class="menu-bullet menu-bullet-line">
+                                  </i>
+                                  <span class="menu-text">{{__('lang.create')}}</span>
+                              </a>
+                          </li>
+
+                          <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
+                              <a href="{{route('admin.subjects.index')}}" class="menu-link  ">
+                                  <i class="menu-bullet menu-bullet-line">
+                                  </i>
+                                  <span class="menu-text">{{__('lang.show all')}}</span>
+                              </a>
+                          </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                 <li class="menu-item menu-item-submenu {{request()->routeIs('admin.grades.*') ?'menu-item-active':''}}" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="javascript:;" class="menu-link menu-toggle">
+                         <span class="svg-icon svg-icon-primary svg-icon-2x">
+                           <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Communication/Group.svg-->
+                           @include('admin.layouts.icons.videos')
+                          </span>
+
+
+                         <span class="menu-text mx-2">{{__('lang.grades')}}</span>
+                         <i class="menu-arrow"></i>
+                    </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+
+
+
+                          <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
+                              <a href="{{route('admin.grades.create')}}" class="menu-link  ">
+                                  <i class="menu-bullet menu-bullet-line">
+                                  </i>
+                                  <span class="menu-text">{{__('lang.create')}}</span>
+                              </a>
+                          </li>
+
+                          <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
+                              <a href="{{route('admin.grades.index')}}" class="menu-link  ">
                                   <i class="menu-bullet menu-bullet-line">
                                   </i>
                                   <span class="menu-text">{{__('lang.show all')}}</span>
@@ -202,7 +265,13 @@
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
-
+                          <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
+                              <a href="{{route('admin.videos.create')}}" class="menu-link  ">
+                                  <i class="menu-bullet menu-bullet-line">
+                                  </i>
+                                  <span class="menu-text">{{__('lang.create')}}</span>
+                              </a>
+                          </li>
 
 
 
@@ -219,10 +288,82 @@
                     </div>
                 </li>
 
+  
+
+                <li class="menu-item menu-item-submenu {{request()->routeIs('admin.files.*') ?'menu-item-active':''}}" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="javascript:;" class="menu-link menu-toggle">
+                         <span class="svg-icon svg-icon-primary svg-icon-2x">
+                           <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Communication/Group.svg-->
+                           @include('admin.layouts.icons.videos')
+                          </span>
+
+
+                         <span class="menu-text mx-2">{{__('lang.files')}}</span>
+                         <i class="menu-arrow"></i>
+                    </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
 
 
 
+                          <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
+                              <a href="{{route('admin.files.create')}}" class="menu-link  ">
+                                  <i class="menu-bullet menu-bullet-line">
+                                  </i>
+                                  <span class="menu-text">{{__('lang.create')}}</span>
+                              </a>
+                          </li>
 
+                          <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
+                              <a href="{{route('admin.files.index')}}" class="menu-link  ">
+                                  <i class="menu-bullet menu-bullet-line">
+                                  </i>
+                                  <span class="menu-text">{{__('lang.show all')}}</span>
+                              </a>
+                          </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="menu-item menu-item-submenu {{request()->routeIs('admin.exams.*') ?'menu-item-active':''}}" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="javascript:;" class="menu-link menu-toggle">
+                         <span class="svg-icon svg-icon-primary svg-icon-2x">
+                           <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Communication/Group.svg-->
+                           @include('admin.layouts.icons.videos')
+                          </span>
+
+
+                         <span class="menu-text mx-2">{{__('lang.exams')}}</span>
+                         <i class="menu-arrow"></i>
+                    </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+
+
+                          <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
+                              <a href="{{route('admin.exams.create')}}" class="menu-link  ">
+                                  <i class="menu-bullet menu-bullet-line">
+                                  </i>
+                                  <span class="menu-text">{{__('lang.create')}}</span>
+                              </a>
+                          </li>
+
+
+                          <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
+                              <a href="{{route('admin.exams.index')}}" class="menu-link  ">
+                                  <i class="menu-bullet menu-bullet-line">
+                                  </i>
+                                  <span class="menu-text">{{__('lang.show all')}}</span>
+                              </a>
+                          </li>
+
+                        </ul>
+                    </div>
+                </li>
 
 
 

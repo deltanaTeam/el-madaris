@@ -1,13 +1,13 @@
 @extends('admin.layouts.master')
-@section('title')
-{{$data['title']}}
-@endsection
+
+@section('title', __('lang.'.$data['title']))
+
 @section('sub-topbar')
 <div class=" " >
   <ul class="nav d-flex justify-content-start ">
     <li class="nav-item mx-3 pt-2 ">
-       <b  class="text-info  font-weight-bolder  h3 align-items-center ">
-         {{$data['title']}}
+       <b  class="text-primary  font-weight-bolder  h3 align-items-center ">
+         {{__('lang.'.$data['title'])}}
        </b>
     </li>
   </ul>
@@ -43,5 +43,5 @@
 @endsection
 @section('script')
 {!! $dataTable->scripts() !!}
-  @include('scripts')
+  @include('admin.scripts')
 @endsection
