@@ -36,39 +36,52 @@ $fakeData = [
 @endphp
 <div x-data="courseViewer()" class="flex min-h-screen ">
 
-  <aside class="lg:w-72 lg:block side-theme  md:block sm:hidden space-y-6 absolute inset-y-0 start-0 transform -transform-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out bg-white border-l p-4 overflow-y-auto" id="sidebar">
-    <h2 class="text-xl font-bold mb-4 text-gray-700">الموضوعات</h2>
-     <button id="toggleSidebar" class="md:hidden">uhjhjhhjh</button>
+  <aside class="side-theme lg:w-72 lg:block min-h-screen  md:block sm:hidden  space-y-6  inset-y-0 start-0 transform lg:ms-3 md:ms-1  md:translate-x-0 transition duration-200 ease-in-out  border-l p-4 overflow-y-auto; " id="sidebar">
+    <h2 class="text-xl font-bold mb-4 text-h2">{{__('lang.stages')}}</h2>
+    <div class="p-4 z-50 shadow-lg rounded-lg text-h3"> <a href="" class="flex items-center space-x-2"> <span class="mx-2">@include('icons.circle-fill')</span> <span class="mx-2">{{__('lang.Test Scores')}}</span></a></div>
+
     <template x-for="topic in topics" :key="topic.id">
       <div class="mb-2">
         <!-- زر طي/فتح الموضوع -->
         <button @click="toggleTopic(topic.id)"
-          class="w-full text-right font-semibold bg-gray-100 p-2 rounded hover:bg-gray-200"
-          :class="{ 'bg-gray-300': topic.id === openTopicId }">
+          class="w-full py-4 px-4 text-start font-bold flex justify-between  shadow-lg rounded-lg text-h3 hover:bg-gray-50/50"
+          :class="{ 'bg-gray-50 text-theme-3': topic.id === openTopicId }">
+                
                 <span x-text="topic.title"></span>
+                <span :class="{ 'rotate-90': open }" class="inline-block transform transition-transform duration-300">
+                    <svg class="w-4 h-4 transform transition-transform" :class="{'rotate-90': topic.id === openTopicId}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </span> 
 
         </button>
 
         <!-- محتوى الموضوع -->
-        <div x-show="topic.id === openTopicId" class="pl-4 mt-2 space-y-1">
+        <div x-show="topic.id === openTopicId" class="ps-4 mt-2 space-y-1 bg-theme-2 rounded-lg text-h3">
           <template x-for="video in topic.videos" :key="video.id">
             <button @click="showContent('video', video)"
-              class="text-sm text-blue-600 hover:underline block text-right">
-              🎥 <span x-text="video.title"></span>
+              class="side-sub-list" :class="{
+                 'bg-theme-3 text-white': currentContentId === video.id, 
+                  'hover:bg-gray-300/50': currentContentId !== video.id}" >
+              <span class="mx-1"> @include('icons.video2') </span> <span x-text="video.title"></span>
             </button>
           </template>
 
           <template x-for="file in topic.files" :key="file.id">
             <button @click="showContent('file', file)"
-              class="text-sm text-green-600 hover:underline block text-right">
-               📁 <span x-text="file.title"></span>
+              class="side-sub-list" :class="{
+                 'bg-theme-3 text-white': currentContentId === file.id, 
+                  'hover:bg-gray-300/50': currentContentId !== file.id}">
+              <span class="mx-1"> @include('icons.file') </span> <span x-text="file.title"></span>
             </button>
           </template>
 
           <template x-for="exam in topic.exams" :key="exam.id">
             <button @click="showContent('exam', exam)"
-              class="text-sm text-red-600 hover:underline block text-right">
-              📝 <span x-text="exam.title"></span>
+              class="side-sub-list" :class="{
+                 'bg-theme-3 text-white': currentContentId === exam.id, 
+                  'hover:bg-gray-300/50': currentContentId !== exam.id}">
+              <span class="mx-1"> @include('icons.edu-scroll') </span> <span x-text="exam.title"></span>
             </button>
           </template>
         </div>
@@ -77,18 +90,21 @@ $fakeData = [
   </aside>
 
 
-  <main class="flex-1 p-6 bg-white border-r overflow-y-auto">
+  <main class="flex-1 p-6 text-h1   overflow-y-auto">
     <template x-if="active.type === 'video'">
       <div>
         <h3 class="text-lg font-bold mb-2"><span x-text="active.data.title"></span></h3>
-        <video :src="active.data.url" controls class="w-full rounded shadow"></video>
+        <video :src="active.data.url" 
+          controls  class="w-full rounded shadow" controlsList="nodownload" @contextmenu.preventw"></video>
       </div>
     </template>
 
     <template x-if="active.type === 'file'">
-      <div>
+      <div >
+
         <h3 class="text-lg font-bold mb-2"><span x-text="active.data.title"></span></h3>
-        <iframe :src="active.data.url" class="w-full h-[500px] rounded shadow"></iframe>
+        <iframe   :src="active.data.url" class="w-full h-[500px] rounded shadow"  style="border: none;" 
+  oncontextmenu="return false;"></iframe>
       </div>
     </template>
 
@@ -99,8 +115,14 @@ $fakeData = [
       </div>
     </template>
 
-    <template x-if="!active.type">
-      <p class="text-gray-400">اختر عنصرًا من القائمة لعرضه.</p>
+    <template x-if="!active.type" >
+      <div class="flex-1 p-4 mt-4 md:mt-0 md:ml-64">
+        <h1 id="5544" class="text-4xl font-bold mb-8 text-h3 text-center  tracking-wide select-none"> {{__('lang.subjects')}}</h1>
+
+
+        <p class="text-h2">اختر عنصرًا من القائمة لعرضه.</p>
+      </div>
+      
     </template>
   </main>
 </div>
@@ -127,6 +149,8 @@ $fakeData = [
 function courseViewer() {
   return {
     openTopicId: null,
+    currentContentId: null,
+
     active: { type: null, data: {} },
     // topics: @json($fakeData), // مرري البيانات من Laravel Controller
     topics:@json($fakeData) , // مرري البيانات من Laravel Controller
@@ -137,6 +161,16 @@ function courseViewer() {
 
     showContent(type, data) {
       this.active = { type, data };
+      if (type === 'video') {
+        this.currentContentId = data.id;
+      }
+      if (type === 'file') {
+        this.currentContentId = data.id;
+      }
+      if (type === 'exam') {
+        this.currentContentId = data.id;
+      }
+      
     }
   }
 }

@@ -25,6 +25,18 @@
   .btn-enroll:hover, .btn-enroll:focus {
     outline: none;
   }
+  .iframe-wrap {
+  position: relative;
+}
+.iframe-wrap::after {
+  content: "";
+  display:block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
   /* === Light Theme === */
   .bg-header {
     @apply bg-lime-50 ;
@@ -92,6 +104,10 @@
   }
    .side-theme{
      @apply bg-lime-300/50 text-lime-700 my-5 rounded-lg;
+      
+   }
+   .side-sub-list{
+    @apply flex items-center space-x-2 shadow py-3 px-2 hover:underline w-4/5 block text-start;
    }
   .bg-body {
     @apply bg-lime-100;

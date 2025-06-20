@@ -9,15 +9,15 @@
 
 
 <section class="w-full" >
-   <div x-data="{ sidebarOpen: false }" class="min-h-screen rounded-md">
+<div x-data="{ sidebarOpen: false }" class="min-h-screen rounded-md">
 
   <!-- زر فتح الـ Sidebar -->
   <div class="p-4 ">
     <button @click="sidebarOpen = true"
         class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition md:hidden"
       >
-  ☰ القائمة
-</button>
+      ☰ القائمة
+    </button>
   </div>
 
   <div class="flex flex-col md:flex-row ">
