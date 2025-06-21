@@ -162,8 +162,8 @@ $fakeData = [
           </div>
           <div class="py-6 px-6 rounded-lg  bg-white text-theme-2 my-4 ">
             <h2 class="text-2xl font-bold capitalize mb-8 text-theme-2"> description  </h2>
-             <p class="space-y-3 px-4"> kbhlb klylly ykhkyhly khjkyhjky hykhjky hjykjhky hyjkhykj
-              khkyhjkyh hykhjykh jhjyhjy jhyhnjyh khjykhjyk jhjkyhnyj jhyhjy jhyhjy jhjyh jhyhjy
+             <p class="space-y-3 px-4">               >is optimized for learning and training. Examples might be simplified to improve reading and learning. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content
+
              </p>
           </div>
 

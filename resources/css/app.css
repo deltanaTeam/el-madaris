@@ -1,10 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+  .rtl-select {
+    @apply appearance-none w-full border border-gray-300 rounded px-4 py-2 pr-10 bg-white text-right;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' fill='gray' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.08 0l-4.25-4.25a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 0.75rem center;
+    background-size: 1rem;
+    padding-left: 2.5rem;
+    direction: rtl;
+  }
+}
 @layer utilities {
   .text-shadow-lg {
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
   }
+ 
+
 
   .text-shadow-lime-300 {
     text-shadow: 2px 2px 4px #bef264; /* هذا هو لون lime-300 من Tailwind */
@@ -54,7 +68,7 @@
     @apply text-lime-500;
   }
   .border-input{
-    @apply border-lime-400 border-4;
+    @apply border border-lime-600  rounded focus:border-lime-300 focus:shadow ;
   }
   .bg-theme-1{
     @apply bg-lime-800 text-white;
@@ -67,6 +81,9 @@
   }
   .bg-theme-4{
     @apply bg-lime-300;
+  }
+  .bg-theme-5{
+    @apply bg-lime-300/20;
   }
   .text-h1 {
     @apply text-lime-900;
@@ -239,8 +256,12 @@
   .dark .bg-theme-4{
     @apply bg-teal-200;
   }
+  .dark .bg-theme-5{
+    @apply bg-teal-200/20;
+  }
   .dark .border-input{
-    @apply border-teal-400 border-4;
+    @apply border border-teal-300  rounded focus:border-teal-200 focus:shadow ;
+
   }
 
 }

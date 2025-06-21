@@ -4,9 +4,9 @@
 
 @section('content')
 
-  <div  class=" w-full  min-h-screen ">
+  <div  class=" w-full  min-h-screen  mb-6">
     <h1 class="text-4xl text-h1 text-center capitalize my-6 p-6"> {{__('lang.course contents')}}</h1>
-    <div x-data="{ tab: 'info' }" class="w-full max-w-5xl mx-auto">
+    <div x-data="{ tab: 'info' }" class="w-full max-w-5xl mx-auto mb-6">
 
     <div class="flex justify-between border-b border-gray-200 mb-6">
       <div class="flex">
@@ -29,8 +29,14 @@
         class="px-4 py-2 capitalize text-xl font-semibold border-b-2 -mb-px transition">
         المعلم
         </button>
+         <button 
+        @click="tab = 'description'" 
+        :class="tab === 'description' ? 'border-theme-3 text-theme-3' : 'border-transparent text-gray-400 hover:text-theme-3'" 
+        class="px-4 py-2 capitalize text-xl font-semibold border-b-2 -mb-px transition">
+        الوصف
+        </button>
        </div>
-       <a href="" class="float-start text-xl bg-theme-3 hover:bg-theme-2 p-3 rounded-full text-h3 ">{{__('lang.Enroll Now')}}</a>
+       <a href="" class="float-start text-xl bg-theme-3 hover:bg-theme-2 p-3 mb-2 rounded-full text-h3 ">{{__('lang.Enroll Now')}}</a>
     </div>
 
     <div>
@@ -141,6 +147,13 @@
                  khkyhjkyh hykhjykh jhjyhjy jhyhnjyh khjykhjyk jhjkyhnyj jhyhjy jhyhjy jhjyh jhyhjy
                </p>
              </div>
+            </div>
+        </div>
+        <div x-show="tab === 'description'" class="p-4 bg-white rounded shadow">
+          <h2 class="text-xl font-bold mb-2 capitalize" >  {{__('lang.description') }}</h2>
+            <div class="">
+              <p>is optimized for learning and training. Examples might be simplified to improve reading and learning. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content</p>
+             
             </div>
         </div>
     </div>

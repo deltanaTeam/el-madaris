@@ -15,7 +15,7 @@
 
              
 
-             <!-- Hamburger (Mobile) -->
+             <!-- btn (Mobile) -->
              <div class="lg:hidden flex items-start">
                  <button @click="open = !open" class="button-header focus:outline-none md:hidden">
                      <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -35,7 +35,42 @@
              
 
              <!-- Desktop Links -->
-             <div class="hidden md:flex md:items-center md:space-x-6 rtl:space-x-reverse">
+             <div class="hidden md:flex md:items-center md:space-x-4 rtl:space-x-reverse">
+
+              
+             
+               <!-- grades Dropdown -->
+               
+               <!-- end grades Dropdown -->
+                 <a href="#" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{ __('lang.home') }}</a>
+                 <a href="#" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{ __('lang.courses') }}</a>
+                 <a href="{{route('login')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{__('lang.login')}} </a>
+                 
+                 <div x-data="{ gradOpen: false }" class="relative drop-nav">
+                  <button @click="gradOpen = !gradOpen"
+                          class="flex items-center space-x-2 rtl:space-x-reverse px-3 py-1 button-header rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">
+                          {{__('lang.grades')}}
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7"/>
+                      </svg>
+                  </button>
+                  <div x-show="gradOpen"
+                       @click.away="gradOpen = false"
+                       class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                       @forelse($grades as $grade)
+
+                      <a href="{{route('grades.show',$grade->id)}}"
+                         class="block px-4 py-2 hover:bg-theme-4 text-theme-2">{{ $grade->name }}</a>
+
+                       @empty
+                       @endforelse
+                  </div>
+               </div>
+
+             </div>
+
+             <div class="hidden md:flex md:items-end md:space-x-4 rtl:space-x-reverse">
 
                <button onclick="document.documentElement.classList.toggle('dark')" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
                   @include('layouts.icons.dark_mode') @include('layouts.icons.light-mode')
@@ -63,33 +98,7 @@
                   </div>
                </div>
                <!-- end Language Dropdown -->
-               <!-- grades Dropdown -->
-               <div x-data="{ gradOpen: false }" class="relative drop-nav">
-                  <button @click="gradOpen = !gradOpen"
-                          class="flex items-center space-x-2 rtl:space-x-reverse px-3 py-1 button-header rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
-                          {{__('lang.grades')}}
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 9l-7 7-7-7"/>
-                      </svg>
-                  </button>
-                  <div x-show="gradOpen"
-                       @click.away="gradOpen = false"
-                       class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-50">
-                       @forelse($grades as $grade)
-
-                      <a href="{{route('grades.show',$grade->id)}}"
-                         class="block px-4 py-2 hover:bg-theme-4 text-theme-2">{{ $grade->name }}</a>
-
-                       @empty
-                       @endforelse
-                  </div>
-               </div>
-               <!-- end grades Dropdown -->
-                 <a href="#" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.home') }}</a>
-                 <a href="#" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.contact us') }}</a>
-                 <a href="{{route('login')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{__('lang.login')}} </a>
-                 <!-- Search -->
+              
 
              </div>
          </div>
@@ -146,7 +155,7 @@
            </div>
            <!-- end Language Dropdown -->
              <a href="#" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.home') }}</a>
-             <a href="#" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.contact us') }}</a>
+             <a href="#" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.courses') }}</a>
              <a href="{{route('login')}}" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{__('lang.login')}} </a>
 
          </div>

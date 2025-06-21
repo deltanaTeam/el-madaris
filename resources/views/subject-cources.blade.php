@@ -1,154 +1,127 @@
 @extends('layouts.guest')
 
-@section('title', __('lang.course content'))
+@section('title', 'جميع الكورسات')
 
 @section('content')
-@php
-$fakeData = [
-  [
-    'id' => 1,
-    'title' => 'المقدمة',
-    'videos' => [
-      ['id' => 101, 'title' => 'فيديو تعريفي بالكورس', 'url' => '/storage/videos/intro.mp4'],
-    ],
-    'files' => [
-      ['id' => 201, 'title' => 'ملف تعريفي PDF', 'url' => '/storage/files/intro.pdf'],
-    ],
-    'exams' => [
-      ['id' => 301, 'title' => 'اختبار تمهيدي', 'url' => '/exams/1'],
-    ]
-  ],
-  [
-    'id' => 2,
-    'title' => 'الوحدة الأولى: المفاهيم الأساسية',
-    'videos' => [
-      ['id' => 102, 'title' => 'فيديو 1: ما هو البرمجة؟', 'url' => '/storage/videos/programming-basics.mp4'],
-      ['id' => 103, 'title' => 'فيديو 2: أنواع لغات البرمجة', 'url' => '/storage/videos/languages.mp4'],
-    ],
-    'files' => [
-      ['id' => 202, 'title' => 'مذكرة الوحدة الأولى', 'url' => asset('/images/test.pdf')],
-    ],
-    'exams' => [
-      ['id' => 302, 'title' => 'امتحان الوحدة الأولى', 'url' => '/exams/2'],
-    ]
-  ]
-];
-@endphp
+<div class="container mx-auto  py-6">
+    <div class="flex flex-col md:flex-row gap-6">
 
-<div x-data="courseViewer()" class="flex min-h-screen rounded-md">
-  <div class="p-4 ">
-    <button @click="sidebarOpen = true"
-        class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition md:hidden"
-      >
-      ☰ القائمة
-    </button>
-  </div>
-  <!-- ✅ Sidebar -->
-   <div class="flex flex-col md:flex-row ">
+       
+        <aside class="md:w-1/4 w-full  bg-theme-5 text-h2 p-4 rounded-lg shadow space-y-4">
+            <h1 class="text-3xl text-center font-bolder capitalize">{{__('lang.filter your course')}}</h1>
+            <form method="GET" action="" class="space-y-4" x-data="{ price: '{{ request('price') }}' }" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                <div>
+                    <label class="block font-bold mb-1">الصف الدراسي</label>
+                    <select name="grade" class="w-full border border-input  focus:border-input rounded-lg px-2 py-1 rtl:rtl-select" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                        <option value="">الكل</option>
+                        @foreach($grades as $grade)
+                            <option value="{{ $grade->id }}" {{ request('grade') == $grade->id ? 'selected' : '' }}>{{ $grade->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-    <!-- Sidebar: يظهر دائمًا في الشاشات الكبيرة، وينزلق في الموبايل -->
-    <div 
-      class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
-      x-show="sidebarOpen"
-      x-transition
-      @click="sidebarOpen = false"
-    ></div>
+                <div>
+                    <label class="block font-bold mb-1">المدرس</label>
+                    <select name="teacher" class="w-full border rounded px-2 py-1 rtl:rtl-select ">
+                        <option value="">الكل</option>
+                        {{-- @foreach($teachers as $teacher)
+                            <option value="{{ $teacher->id }}" {{ request('teacher') == $teacher->id ? 'selected' : '' }}>{{ $teacher->name }}</option>
+                        @endforeach --}}
+                    </select>
+                </div>
 
-    <aside 
-      class="fixed md:static rounded-[2vw] z-40 md:z-auto top-0 start-0 min-h-screen h-full lg:w-80 md:w-64 side-theme p-4 shadow transition-transform transform md:translate-x-0"
-      :class="{ '-translate-x-full': !sidebarOpen }"
-      x-show="sidebarOpen || window.innerWidth >= 768"
-      x-transition >
-      <div class="flex justify-between items-center mb-4 md:hidden">
-        <h2 class="text-lg font-bold">{{__('lang.list')}}</h2>
-        <button @click="sidebarOpen = false" class="text-gray-500 hover:text-black text-xl">&times;</button>
-      </div>
-        <h2 class="text-xl font-bold mb-4 text-gray-700">الموضوعات</h2>
+                <div>
+                    <label class="block font-bold mb-1">السعر</label>
+                    <select name="price" x-model="price" class="w-full border rounded px-2 py-1 rtl:rtl-select">
+                        <option value="">الكل</option>
+                        <option value="free">مجاني</option>
+                        <option value="paid">مدفوع</option>
+                    </select>
+                </div>
+                <!-- نطاق السعر يظهر فقط إذا كان السعر = مدفوع -->
+                <div x-show="price === 'paid'" x-transition>
+                    <label class="block font-bold mb-1">نطاق السعر</label>
+                    <div class="flex items-center gap-2">
+                        <input type="number" name="min_price" placeholder="من" class="w-full border rounded px-2 py-1" value="{{ request('min_price') }}">
+                        <span class="text-gray-600">-</span>
+                        <input type="number" name="max_price" placeholder="إلى" class="w-full border rounded px-2 py-1" value="{{ request('max_price') }}">
+                    </div>
+                </div>
 
-        <template x-for="topic in topics" :key="topic.id">
-        <div class="mb-2">
-            <!-- زر طي/فتح الموضوع -->
-            <button @click="toggleTopic(topic.id)"
-            class="w-full text-right font-semibold bg-gray-100 p-2 rounded hover:bg-gray-200"
-            :class="{ 'bg-gray-300': topic.id === openTopicId }">
-                    <span x-text="topic.title"></span>
+                <div>
+                    <label class="block font-bold mb-1">التقييم</label>
+                    <select name="rating" class="w-full border rounded px-2 py-1 rtl:rtl-select">
+                        <option value="">الكل</option>
+                        @for($i = 5; $i >= 1; $i--)
+                            <option value="{{ $i }}" {{ request('rating') == $i ? 'selected' : '' }}>{{ $i }} نجوم فأعلى</option>
+                        @endfor
+                    </select>
+                </div>
 
-            </button>
+                <div>
+                    <label class="block font-bold mb-1">الترتيب حسب</label>
+                    <select name="sort" class="w-full border rounded px-2 py-1 rtl:rtl-select">
+                        <option value="">الأحدث</option>
+                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>الأقدم</option>
+                        <option value="rating" {{ request('sort') == 'rating' ? 'selected' : '' }}>الأعلى تقييمًا</option>
+                        <option value="price" {{ request('sort') == 'price' ? 'selected' : '' }}>الأقل سعرًا</option>
+                    </select>
+                </div>
 
-            <!-- محتوى الموضوع -->
-            <div x-show="topic.id === openTopicId" class="pl-4 mt-2 space-y-1">
-            <template x-for="video in topic.videos" :key="video.id">
-                <button @click="showContent('video', video)"
-                class="text-sm text-blue-600 hover:underline block text-right">
-                🎥 <span x-text="video.title"></span>
-                </button>
-            </template>
+                <button type="submit" class="bg-theme-3 text-white px-4 py-2 rounded-full hover:bg-theme-2 w-full">تصفية</button>
+            </form>
+        </aside>
 
-            <template x-for="file in topic.files" :key="file.id">
-                <button @click="showContent('file', file)"
-                class="text-sm text-green-600 hover:underline block text-right">
-                📁 <span x-text="file.title"></span>
-                </button>
-            </template>
+        {{-- الكورسات --}}
+        <main class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @for($j=1;$j<10 ;$j++ )
+                <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-md transition">
+                    <img src="{{asset('images/course.jpg')}}" alt="jhfjr" class="w-full h-40 object-cover">
+                    <div class="p-4 space-y-2">
+                        <h2 class="text-lg font-bold">course name</h2>
+                        <p class="text-sm text-gray-600">المدرس: </p>
+                        <p class="text-sm text-gray-600">الصف: </p>
+                        <div class="flex justify-start items-center space-x-1 rtl:space-x-reverse text-yellow-400 text-2xl">
+                            @for ($k = 1; $k <= 5; $k++)
+                                @if ($k <= floor(3.5))
+                                    <span>★</span>
+                                @elseif ($k - (3.5 )< 1)
+                                    <span class="rtl:rotate-180">@include('icons.star-half')</span> 
 
-            <template x-for="exam in topic.exams" :key="exam.id">
-                <button @click="showContent('exam', exam)"
-                class="text-sm text-red-600 hover:underline block text-right">
-                📝 <span x-text="exam.title"></span>
-                </button>
-            </template>
-            </div>
-        </div>
-        </template>
-    </aside>
+                                @else
+                                    {{-- <span class="text-gray-300">★</span> --}}
+                                @endif
+                               
+                            @endfor
+                        </div>
+                        {{-- <p class="text-sm text-yellow-500">⭐</p> --}}
+                        <p class="text-sm font-semibold"> 50</p>
+                        <a href="{{url('/topics')}}" class="block mt-2 bg-theme-4 text-theme-1 text-center px-3 py-1 rounded-full hover:bg-theme-3 text-sm">عرض التفاصيل</a>
+                    </div>
+                </div>
+            @endfor
 
-  <!-- ✅ Main Content -->
-    <main class="flex-1 p-4 mt-4 md:mt-0 md:ml-64 bg-white border-r overflow-y-auto">
-        <template x-if="active.type === 'video'">
-        <div>
-            <h3 class="text-lg font-bold mb-2"><span x-text="active.data.title"></span></h3>
-            <video :src="active.data.url" controls class="w-full rounded shadow"></video>
-        </div>
-        </template>
+            {{-- ////////////////////////////////////// --}}
+            {{-- @forelse($courses as $course)
+                <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-md transition">
+                    <img src="{{ $course->image }}" alt="{{ $course->title }}" class="w-full h-40 object-cover">
+                    <div class="p-4 space-y-2">
+                        <h2 class="text-lg font-bold">{{ $course->title }}</h2>
+                        <p class="text-sm text-gray-600">المدرس: {{ $course->teacher->name }}</p>
+                        <p class="text-sm text-gray-600">الصف: {{ $course->grade->name }}</p>
+                        <p class="text-sm text-yellow-500">⭐ {{ $course->rating ?? '0.0' }}</p>
+                        <p class="text-sm font-semibold">{{ $course->price > 0 ? $course->price . ' جنيه' : 'مجاني' }}</p>
+                        <a href="{{ route('courses.show', $course) }}" class="inline-block mt-2 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm">عرض التفاصيل</a>
+                    </div>
+                </div>
+            @empty
+                <div class="col-span-full text-center text-gray-500">لا توجد كورسات مطابقة للفلاتر.</div>
+            @endforelse --}}
+        </main>
+    </div>
 
-        <template x-if="active.type === 'file'">
-        <div>
-            <h3 class="text-lg font-bold mb-2"><span x-text="active.data.title"></span></h3>
-            <iframe :src="active.data.url" class="w-full h-[500px] rounded shadow"></iframe>
-        </div>
-        </template>
-
-        <template x-if="active.type === 'exam'">
-        <div>
-            <h3 class="text-lg font-bold mb-2"><span x-text="active.data.title"></span></h3>
-            <p class="text-gray-600">عرض الأسئلة أو رابط الامتحان هنا</p>
-        </div>
-        </template>
-
-        <template x-if="!active.type">
-        <p class="text-gray-400">اختر عنصرًا من القائمة لعرضه.</p>
-        </template>
-    </main>
+    {{-- <div class="mt-6">
+        {{ $courses->withQueryString()->links() }}
+    </div> --}}
 </div>
-</div>
-
-<script>
-function courseViewer() {
-  return {
-    sidebarOpen: false, // ← أضف هذا السطر
-    openTopicId: null,
-    active: { type: null, data: {} },
-    topics: @json($fakeData),
-
-    toggleTopic(id) {
-      this.openTopicId = this.openTopicId === id ? null : id;
-    },
-
-    showContent(type, data) {
-      this.active = { type, data };
-      this.sidebarOpen = window.innerWidth >= 768; // يغلق تلقائيًا في الموبايل بعد الضغط
-    }
-  }
-}
-</script>
 @endsection
