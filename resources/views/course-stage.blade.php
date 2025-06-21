@@ -80,7 +80,7 @@
                         @if ($i <= floor($averageRating))
                             <span>★</span>
                         @elseif ($i - $averageRating < 1)
-                            <span>⯨</span> {{-- نصف نجمة إذا أردت --}}
+                            <span>@include('icons.star-half')</span> {{-- نصف نجمة إذا أردت --}}
                         @else
                             <span class="text-gray-300">★</span>
                         @endif
