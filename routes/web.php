@@ -61,8 +61,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
   Route::get('/topics', function () {
       return view('course-stage');
   });
-  Route::get('/course3', function () {
-      return view('teachers');
+  Route::get('/exam', function () {
+      return view('exam');
   });
 //   Route::get('/dashboard', function () {
 //       return view('dashboard');

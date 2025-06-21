@@ -8,7 +8,9 @@
     <h1 class="text-4xl text-h1 text-center capitalize my-6 p-6"> {{__('lang.course contents')}}</h1>
     <div x-data="{ tab: 'info' }" class="w-full max-w-5xl mx-auto">
 
-    <div class="flex border-b border-gray-200 mb-6">
+    <div class="flex justify-between border-b border-gray-200 mb-6">
+      <div class="flex">
+
         <button 
         @click="tab = 'info'" 
         :class="tab === 'info' ? 'border-theme-3 text-theme-3' : 'border-transparent text-gray-400 hover:text-theme-3'" 
@@ -27,9 +29,10 @@
         class="px-4 py-2 capitalize text-xl font-semibold border-b-2 -mb-px transition">
         المعلم
         </button>
+       </div>
+       <a href="" class="float-start text-xl bg-theme-3 hover:bg-theme-2 p-3 rounded-full text-h3 ">{{__('lang.Enroll Now')}}</a>
     </div>
 
-    <!-- محتوى التبويبات -->
     <div>
         <div x-show="tab === 'info'" class="p-4 bg-white rounded shadow">
           <h2 class="text-2xl font-bold my-2">محتوى الدورة</h2>
@@ -69,18 +72,18 @@
         <div x-show="tab === 'reviews'" class="p-4 bg-white rounded shadow">
           <h2 class="text-xl font-bold mb-2">تقييمات الطلاب</h2>
            @php
-            $averageRating=4.66; 
+            $averageRating =4.66; 
            @endphp
           <div class=" px-4 py-8">
             <!-- متوسط التقييم -->
             <div class="text-center mb-8">
                 <h2 class="text-2xl font-bold mb-2">متوسط التقييم</h2>
                 <div class="flex justify-center items-center space-x-1 rtl:space-x-reverse text-yellow-400 text-2xl">
-                    @for ($i = 1; $i <= 5; $i++)
-                        @if ($i <= floor($averageRating))
+                    @for ($j = 1; $j <= 5; $j++)
+                        @if ($j <= floor($averageRating))
                             <span>★</span>
-                        @elseif ($i - $averageRating < 1)
-                            <span>@include('icons.star-half')</span> {{-- نصف نجمة إذا أردت --}}
+                        @elseif ($j - $averageRating < 1)
+                            <span class="rtl:rotate-180">@include('icons.star-half')</span> 
                         @else
                             <span class="text-gray-300">★</span>
                         @endif
@@ -106,7 +109,7 @@
                 @empty
                     <p class="text-center text-gray-500">لا توجد تقييمات بعد.</p>
                 @endforelse --}}
-                 @for ($i=1; $i<10; $i++)
+                 @for ($m=1; $m<10; $m++)
                     <div class="p-4 bg-white rounded shadow">
                         <div class="flex items-center space-x-2 rtl:space-x-reverse mb-2">
                             <strong>username</strong>
@@ -126,8 +129,19 @@
         </div>
 
         <div x-show="tab === 'teacher'" class="p-4 bg-white rounded shadow">
-        <h2 class="text-xl font-bold mb-2">معلومات المعلم</h2>
-        <p>بيانات المعلم وخبراته...</p>
+          <h2 class="text-xl font-bold mb-2">معلومات المعلم</h2>
+            <div class="grid grid-cols-5">
+             <img src="{{asset('images/man.png')}}" alt="teacher image " class="h-[30vh] w-[30vh] rounded-lg sm:col-span-1 col-span-2">
+           
+             <div class="space-y-3 p-4  sm:col-span-4 col-span-3">   
+               <h2 class="text-xl font-bold capitalize mb-4 text-theme-2"> teacher  name </h2>
+               <h2 class="text-xl font-bold capitalize mb-4 text-theme-2"> teacher  experience  </h2>
+
+               <p class=""> kbhlb klylly ykhkyhly khjkyhjky hykhjky hjykjhky hyjkhykj
+                 khkyhjkyh hykhjykh jhjyhjy jhyhnjyh khjykhjyk jhjkyhnyj jhyhjy jhyhjy jhjyh jhyhjy
+               </p>
+             </div>
+            </div>
         </div>
     </div>
     </div>
