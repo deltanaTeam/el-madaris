@@ -16,8 +16,8 @@
              
 
              <!-- Hamburger (Mobile) -->
-             <div class="md:hidden flex items-start">
-                 <button @click="open = !open" class="button-header focus:outline-none">
+             <div class="lg:hidden flex items-start">
+                 <button @click="open = !open" class="button-header focus:outline-none md:hidden">
                      <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                           viewBox="0 0 24 24" stroke="currentColor">
                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -29,7 +29,7 @@
                                d="M6 18L18 6M6 6l12 12"/>
                      </svg>
                  </button>
-                <button class="button-header mt-1 ms-1 focus:outline-none  lg:hidden sm:block" @click="toggleSidebar()"> @include('icons.intent')</button>
+                <button class="button-header mt-1 ms-1 focus:outline-none  lg:hidden md:block block" @click="toggleSidebar()"> @include('icons.intent')</button>
 
              </div>
              

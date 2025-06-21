@@ -4,7 +4,7 @@
 
 @section('content')
 
-<main class="grid grid-cols-1 md:grid-cols-2 px-1 py-1">
+<main class="">
   <div class="w-full px-8 py-4 sm:p-12 transition-all duration-300 ease-in-out " x-data="{ step: 1, profileName: '', cvName: '' }">
 
     <!-- Progress Indicator -->
@@ -22,17 +22,27 @@
         <span class="mt-1 text-sm mx-10">{{__('lang.details')}}</span>
       </div>
     </div>
-
+    <div class="grid grid-cols-1 md:grid-cols-2 px-1 py-1">
     <!-- Form Start -->
-    <form method="POST" action="{{ route('teachers.register') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('teachers.register') }}" enctype="multipart/form-data" class="me-2 border-2 rounded-lg p-3">
       @csrf
 
       <!-- Step 1 -->
-      <div x-show="step === 1" class="space-y-6" x-cloak>
+      <div x-show="step === 1" class="space-y-6 " x-cloak>
         <div>
-          <label for="name" class="block text-sm text-h1 font-medium mb-1">{{__('lang.full name')}}</label>
-          <input type="text" id="name" value="{{old('name')}}" name="name" required class="w-full px-4 py-3 rounded-lg border border-lime-500 focus:border-input"
-            placeholder="{{__('lang.Enter your full name')}}" />
+          <label for="name" class="block text-sm text-h1 font-medium mb-1">{{__('lang.user name')}}</label>
+          <input type="text" id="user_name" value="{{old('user_name')}}" name="user_name" required class="w-full px-4 py-3 rounded-lg border border-lime-500 focus:border-input"
+            placeholder="{{__('lang.Enter your  name')}}" />
+        </div>
+        <div>
+          <label for="name_ar" class="block text-sm text-h1 font-medium mb-1">{{__('lang.name_ar')}}</label>
+          <input type="text" id="name_ar" value="{{old('name_ar')}}" name="name_ar" required class="w-full px-4 py-3 rounded-lg border border-lime-500 focus:border-input"
+            placeholder="{{__('lang.Enter arabic name')}}" />
+        </div>
+        <div>
+          <label for="name_en" class="block text-sm text-h1 font-medium mb-1">{{__('lang.name_en')}}</label>
+          <input type="text" id="name_en" value="{{old('name_en')}}" name="name_en" required class="w-full px-4 py-3 rounded-lg border border-lime-500 focus:border-input"
+            placeholder="{{__('lang.Enter english name')}}" />
         </div>
 
         <div>
@@ -62,8 +72,7 @@
             placeholder="{{__('lang.Confirm Password')}}" />
         </div>
 
-        <div class="flex justify-between">
-          <a href="{{route('register')}}" class=" theme-btn-md  px-6 py-3 rounded-lg font-semibold">{{__('lang.student register')}}</a>
+        <div class="flex justify-end">
 
           <button type="button" @click="step = 2"
             class="theme-btn-md px-6 py-3 rounded-lg font-semibold">{{__('lang.next')}}</button>
@@ -133,10 +142,17 @@
         </div>
       </div>
     </form>
-  </div>
+  
 
-  <div>
-    <img src="{{ asset('images/teach-log.png') }}" alt="img" class="min-h-[100vh]" />
+  <div class="border-2 rounded-lg ">
+    <img src="{{ asset('images/teach-log.png') }}" alt="img" class="min-h-[100vh] rounded-lg" />
+    <div x-show="step === 1" class=" mt-12 flex justify-end" x-cloak>
+      <a href="{{route('register')}}" class=" theme-btn-md  px-6 py-3 rounded-lg font-semibold">{{__('lang.student register')}}</a>
+
+    <div>
+
+  </div>
+  </div>
   </div>
 </main>
 

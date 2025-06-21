@@ -36,6 +36,8 @@ return [
 'Choose Image'=>'اختر صورة',
 'yes'=>'نعم',
 'no'=>'لا',
+'your rate'=>'تقييمك',
+'stars'=>'نجوم',
 'show'=>'عرض',
 'Enroll Now'=>'سجل الآن',
 'search'=>'بحث',

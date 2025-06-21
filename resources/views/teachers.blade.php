@@ -34,9 +34,18 @@ $fakeData = [
   ]
 ];
 @endphp
-<div x-data="courseViewer()" class="flex min-h-screen ">
+<div x-data="courseViewer()" class="grid lg:grid-cols-7  min-h-screen ">
 
-  <aside class="side-theme lg:w-72 lg:block min-h-screen  md:block sm:hidden  space-y-6  inset-y-0 start-0 transform lg:ms-3 md:ms-1  md:translate-x-0 transition duration-200 ease-in-out  border-l p-4 overflow-y-auto; " id="sidebar">
+  <aside class="side-theme  lg:col-span-2 lg:block min-h-screen  hidden  space-y-6  inset-y-0 start-0 transform lg:ms-3 md:ms-1  md:translate-x-0 transition duration-200 ease-in-out  shadow-lg p-4 overflow-y-auto; " id="sidebar">
+    <h2 class="text-2xl text-center font-bold mb-4 text-h2">{{__('lang.course name')}}</h2>
+    <button  @click="active = { type: null, data: {} }; currentContentId = null;"
+      class="  px-4 py-3 w-full rounded shadow hover:bg-gray-200/50 transition" 
+      :class="{
+    'bg-theme-3 text-white': !active.type,
+    ' hover:bg-gray-200/50': active.type
+  }">
+      {{__('lang.about course')}}
+    </button>
     <h2 class="text-xl font-bold mb-4 text-h2">{{__('lang.stages')}}</h2>
     <div class="p-4 z-50 shadow-lg rounded-lg text-h3"> <a href="" class="flex items-center space-x-2"> <span class="mx-2">@include('icons.circle-fill')</span> <span class="mx-2">{{__('lang.Test Scores')}}</span></a></div>
 
@@ -57,10 +66,10 @@ $fakeData = [
         </button>
 
         <!-- محتوى الموضوع -->
-        <div x-show="topic.id === openTopicId" class="ps-4 mt-2 space-y-1 bg-theme-2 rounded-lg text-h3">
+        <div x-show="topic.id === openTopicId" class="ps-2 mt-2 space-y-1  rounded-lg text-h3 w-full bg-gray-100/50">
           <template x-for="video in topic.videos" :key="video.id">
             <button @click="showContent('video', video)"
-              class="side-sub-list" :class="{
+              class="side-sub-list w-full" :class="{
                  'bg-theme-3 text-white': currentContentId === video.id, 
                   'hover:bg-gray-300/50': currentContentId !== video.id}" >
               <span class="mx-1"> @include('icons.video2') </span> <span x-text="video.title"></span>
@@ -90,7 +99,7 @@ $fakeData = [
   </aside>
 
 
-  <main class="flex-1 p-6 text-h1   overflow-y-auto">
+  <main class="flex-1 p-6 text-h1 lg:col-span-5  overflow-y-auto">
     <template x-if="active.type === 'video'">
       <div>
         <h3 class="text-lg font-bold mb-2"><span x-text="active.data.title"></span></h3>
@@ -115,12 +124,110 @@ $fakeData = [
       </div>
     </template>
 
-    <template x-if="!active.type" >
-      <div class="flex-1 p-4 mt-4 md:mt-0 md:ml-64">
-        <h1 id="5544" class="text-4xl font-bold mb-8 text-h3 text-center  tracking-wide select-none"> {{__('lang.subjects')}}</h1>
+    <template x-if="!active.type"  >
+      <div class="flex-1 p-4 mt-4 md:mt-0 md:ms-4">
+          <h1 id="5544" class="text-4xl font-bold mb-8 text-h3 capitalize text-center  tracking-wide select-none"> {{__('lang.course name')}}</h1>
+          <div class="py-6 px-6 rounded-lg  bg-white text-theme-2 ">
+            <h2 class="text-2xl font-bold capitalize mb-8 text-theme-2"> what you will learn in this course  </h2>
+
+            <ul class="space-y-3 px-4">
+              
+              {{-- course objectives --}}
+              <li class="flex items-start text-xl">
+                <span class="me-2 mt-1">@include('icons.circle')</span> <span class="">icon</span>
+                objective 1
+              </li>
+              <li class="flex items-start text-xl">
+                <span class="me-2 mt-1">@include('icons.circle')</span> <span class="">icon</span>
+                objective 2
+              </li>
+              <li class="flex items-start text-xl">
+                <span class="me-2 mt-1">@include('icons.circle')</span> <span class="">icon</span>
+                objective 3
+              </li>
+              <li class="flex items-start text-xl">
+                <span class="me-2 mt-1">@include('icons.circle')</span> <span class="">icon</span>
+                objective 4
+              </li>
+              
+              <li class="flex items-start text-xl">
+                <span class="me-2 mt-1">@include('icons.circle')</span> <span class="">icon</span>
+                objective 5
+              </li>
+              
+              
+              
+                
+            </ul>
+          </div>
+          <div class="py-6 px-6 rounded-lg  bg-white text-theme-2 my-4 ">
+            <h2 class="text-2xl font-bold capitalize mb-8 text-theme-2"> description  </h2>
+             <p class="space-y-3 px-4"> kbhlb klylly ykhkyhly khjkyhjky hykhjky hjykjhky hyjkhykj
+              khkyhjkyh hykhjykh jhjyhjy jhyhnjyh khjykhjyk jhjkyhnyj jhyhjy jhyhjy jhjyh jhyhjy
+             </p>
+          </div>
 
 
-        <p class="text-h2">اختر عنصرًا من القائمة لعرضه.</p>
+          <div class="py-6 px-6 rounded-lg  bg-white text-theme-2 my-4 ">
+            <h2 class="text-2xl font-bold capitalize mb-8 text-theme-2"> teacher  </h2>
+            <div class="grid grid-cols-5">
+             <img src="{{asset('images/man.png')}}" alt="teacher image " class="h-[16vh] w-[16vh] rounded-full sm:col-span-1 col-span-2">
+            <p class="space-y-3 p-4  sm:col-span-4 col-span-3"> kbhlb klylly ykhkyhly khjkyhjky hykhjky hjykjhky hyjkhykj
+              khkyhjkyh hykhjykh jhjyhjy jhyhnjyh khjykhjyk jhjkyhnyj jhyhjy jhyhjy jhjyh jhyhjy
+             </p>
+             </div>
+          </div>
+
+          <div class="py-4 px-6 rounded-lg  bg-white text-theme-2 my-4 ">
+            <h2 class="text-2xl font-bold capitalize mb-8 text-theme-2"> add you rating  </h2>
+            <div x-data="{ rating: 0, hover: 0, comment: '' }" class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow">
+
+  <!-- النجوم -->
+              <div class="flex justify-center mb-4 space-x-1">
+                <template x-for="star in 5" :key="star">
+                  <svg
+                    @click="rating = star"
+                    @mouseover="hover = star"
+                    @mouseleave="hover = 0"
+                    :class="{
+                      'text-yellow-400': star <= hover || (!hover && star <= rating),
+                      'text-gray-300': star > hover && star > rating
+                    }"
+                    class="w-10 h-10 cursor-pointer transition duration-200"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.073 3.298a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.073 3.298c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.072-3.298a1 1 0 00-.363-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.951-.69l1.072-3.298z"/>
+                  </svg>
+                </template>
+              </div>
+
+              <!-- عرض التقييم المختار -->
+              <p class="text-center text-sm text-gray-600 mb-4" > {{__('lang.your rate')}}  <span x-text="rating"></span> {{__('lang.stars')}}</p> 
+
+              <!-- التعليق -->
+              <textarea 
+                x-model="comment"
+                rows="4"
+                placeholder="اكتب تعليقك هنا..."
+                class="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-theme-3 mb-4 resize-none"
+              ></textarea>
+
+              <!-- زر الإرسال -->
+              <button 
+                @click="submitRating()"
+                class="w-full bg-theme-3 text-white py-2 px-4 rounded hover:bg-theme-2 transition">
+                إرسال التقييم
+              </button>
+            </div>
+
+            <script>
+              function submitRating() {
+                // يمكنك استبدال هذا بالكود الذي يرسل البيانات للسيرفر
+                alert('تم إرسال التقييم');
+              }
+            </script>
+
+          </div>
+         
       </div>
       
     </template>
@@ -136,6 +243,15 @@ $fakeData = [
     function toggleSidebar(){
      const sidebar = document.getElementById('sidebar');
 
+     
+      if(sidebar.classList.contains('block')){
+        sidebar.classList.remove('block');
+        sidebar.classList.add('hidden');
+     }
+     else if(sidebar.classList.contains('hidden')){
+        sidebar.classList.remove('hidden');
+        sidebar.classList.add('block');
+     }
      if(sidebar.classList.contains('sm:block')){
         sidebar.classList.remove('sm:block');
         sidebar.classList.add('sm:hidden');

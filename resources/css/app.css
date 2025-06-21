@@ -103,11 +103,11 @@
     @apply text-lime-800;
   }
    .side-theme{
-     @apply bg-lime-300/50 text-lime-700 my-5 rounded-lg;
+     @apply bg-white text-lime-700 my-5 rounded-lg;
       
    }
    .side-sub-list{
-    @apply flex items-center space-x-2 shadow py-3 px-2 hover:underline w-4/5 block text-start;
+    @apply flex items-center space-x-2 shadow py-3 px-2  w-full rounded-lg block text-start;
    }
   .bg-body {
     @apply bg-lime-100;

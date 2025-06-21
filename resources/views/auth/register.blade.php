@@ -58,7 +58,7 @@
   </div>
 
   <div>
-    <img src="{{ asset('images/stud-log.png') }}" alt="img" class="min-h-[100vh]" />
+    <img src="{{ asset('images/stud-log.png') }}" alt="img" class="min-h-[100vh] rounded-lg" />
   </div>
 </main>
 

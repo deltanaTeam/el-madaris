@@ -44,6 +44,8 @@ return [
 'yes'=>'YES',
 'no'=>'NO',
 'show'=>'show',
+'your rate'=>'your rate',
+'stars'=>'stars',
 'Enroll Now'=>'Enroll Now',
 'search'=>'search',
 'search....'=>'search....',
