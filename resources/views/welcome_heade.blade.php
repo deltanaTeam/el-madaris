@@ -45,7 +45,8 @@
                <!-- end grades Dropdown -->
                  <a href="{{route('home')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{ __('lang.home') }}</a>
                  <a href="{{url('/courses')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{ __('lang.courses') }}</a>
-                 
+                 <a href="{{url('/teachers')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{ __('lang.teachers') }}</a>
+
                  <div x-data="{ gradOpen: false }" class="relative drop-nav">
                   <button @click="gradOpen = !gradOpen"
                           class="flex items-center space-x-2 rtl:space-x-reverse px-3 py-1 button-header rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">
@@ -157,6 +158,8 @@
            <!-- end Language Dropdown -->
              <a href="{{route('home')}}" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.home') }}</a>
              <a href="{{url('/courses')}}" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.courses') }}</a>
+             <a href="{{url('/teachers')}}" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.teachers') }}</a>
+
              <a href="{{route('login')}}" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{__('lang.login')}} </a>
 
          </div>

@@ -19,30 +19,42 @@ Route::middleware('guest')->group(function () {
   Route::get('teachers/register', [TeacherRegisterController::class, 'create'])
               ->name('teachers.register');
 
-  Route::post('teachers/register', [TeacherRegisterController::class, 'store']);
+ // Route::post('teachers/register', [TeacherRegisterController::class, 'store']);
+   Route::post('teachers/register',function(){
+    return "تم تسجيل الدخول";
+   });
   ////////////////////////////////////////
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    //Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register',function(){
+    return "تم تسجيل الدخول";
+   });
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+   // Route::post('login', [AuthenticatedSessionController::class, 'store']);
+   Route::post('login',function () {
+    return "تم تسجيل الدخول";
+   });
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');
 
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-                ->name('password.email');
-
+    //Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+    Route::post('forgot-password',function(){
+    return "تم تحديث كلمة المرور";
+   })->name('password.email');
     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
                 ->name('password.reset');
 
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-                ->name('password.store');
-  
+    //Route::post('reset-password', [NewPasswordController::class, 'store']) ->name('password.store');
+    Route::post('reset-password',function(){
+    return "تم تحديث كلمة المرور";
+   }) ->name('password.store');
+   
 });
 
 Route::middleware('auth')->group(function () {

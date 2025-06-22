@@ -21,9 +21,9 @@ for ($i = 1; $i <= 20; $i++) {
 @endphp
 <div x-data="examForm()" x-init="init()" class="max-w-7xl mx-auto px-4 py-8  ">
     <h1 class="text-3xl font-boldest text-h2 my-6 mx-auto text-center"> امتحان الرياضيات على موضوع 1</h1>
-    <form method="POST" action="" class="w-full mx-auto">
+    <form  action="" class="w-full mx-auto">
         <!-- شريط التقدم والوقت -->
-        <div class="flex items-center justify-between bg-gray-100 border border-gray-200 px-4 py-3 rounded mb-6 shadow-sm text-sm md:text-base">
+        <div class="flex items-center justify-between bg-theme-4  px-4 py-3 rounded mb-6 shadow-sm text-sm md:text-base">
             <div class="font-semibold text-gray-700">
                 سؤال <span x-text="currentIndex + 1"></span> من <span x-text="questions.length"></span>
             </div>
@@ -41,12 +41,12 @@ for ($i = 1; $i <= 20; $i++) {
                 <div class="flex flex-col md:flex-row md:flex-wrap gap-4 mx-auto">
 
                    <template x-for="(choice, i) in question.choices" :key="i" class="mx-auto ">
-                     <label class=" w-full md:w-[1/2] lg:w-[1/4] flex items-center bg-theme-3 p-3 rounded cursor-pointer hover:bg-gray-200 peer-checked:bg-theme-3 peer-checked:text-h2 ">
+                     <label class=" w-full md:w-[50%] lg:w-[20%] flex items-center  p-3 rounded cursor-pointer hover:bg-gray-200 peer-checked:bg-theme-3 peer-checked:text-h2 ">
                         <input type="radio" 
                             :name="'answers[' + question.id + ']'"
                             :value="choice"
                             class="me-2 text-theme-1 "
-                            required
+                            
                         >
                         <span x-text="choice" class="text-sm "></span>
                      </label>
@@ -58,21 +58,21 @@ for ($i = 1; $i <= 20; $i++) {
         <!-- التنقل -->
         <div class="flex justify-between mt-8">
             <button type="button" @click="prevPage"
-                class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-4 py-2 rounded"
+                class="bg-gray-300  mx-4 hover:bg-gray-400 text-gray-800 font-semibold px-4 py-2 rounded"
                 x-show="currentPage > 1"
             >
                 السابق
             </button>
 
             <button type="button" @click="nextPage"
-                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded ml-auto"
+                class="bg-theme-3 mx-4 hover:bg-theme-4 text-white font-semibold px-4 py-2 rounded ml-auto"
                 x-show="currentPage < totalPages"
             >
                 التالي
             </button>
 
             <button type="submit"
-                class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded ml-auto"
+                class="bg-green-500 mx-4 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded ml-auto"
                 x-show="currentPage === totalPages"
             >
                 إرسال الإجابات

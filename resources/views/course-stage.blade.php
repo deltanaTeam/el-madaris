@@ -36,7 +36,7 @@
         الوصف
         </button>
        </div>
-       <a href="" class="float-start text-xl bg-theme-3 hover:bg-theme-2 p-3 mb-2 rounded-full text-h3 ">{{__('lang.Enroll Now')}}</a>
+       <a href="{{url('course')}}" class="float-start text-xl bg-theme-3 hover:bg-theme-2 p-3 mb-2 rounded-full text-h3 ">{{__('lang.Enroll Now')}}</a>
     </div>
 
     <div>

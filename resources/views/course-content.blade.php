@@ -15,7 +15,7 @@ $fakeData = [
       ['id' => 201, 'title' => 'ملف تعريفي PDF', 'url' => '/storage/files/intro.pdf'],
     ],
     'exams' => [
-      ['id' => 301, 'title' => 'اختبار تمهيدي', 'url' => '/exams/1'],
+      ['id' => 301, 'title' => 'اختبار تمهيدي', 'url' => url('exam')],
     ]
   ],
   [
@@ -29,7 +29,7 @@ $fakeData = [
       ['id' => 202, 'title' => 'مذكرة الوحدة الأولى', 'url' => asset('/images/test.pdf')],
     ],
     'exams' => [
-      ['id' => 302, 'title' => 'امتحان الوحدة الأولى', 'url' => '/exams/2'],
+      ['id' => 302, 'title' => 'امتحان الوحدة الأولى', 'url' => url('exam')],
     ]
   ]
 ];
@@ -47,7 +47,7 @@ $fakeData = [
       {{__('lang.about course')}}
     </button>
     <h2 class="text-xl font-bold mb-4 text-h2">{{__('lang.stages')}}</h2>
-    <div class="p-4 z-50 shadow-lg rounded-lg text-h3"> <a href="" class="flex items-center space-x-2"> <span class="mx-2">@include('icons.circle-fill')</span> <span class="mx-2">{{__('lang.Test Scores')}}</span></a></div>
+    <div class="p-4 z-50 shadow-lg rounded-lg text-h3"> <a href="{{url('exam/results')}}" class="flex items-center space-x-2"> <span class="mx-2">@include('icons.circle-fill')</span> <span class="mx-2">{{__('lang.Test Scores')}}</span></a></div>
 
     <template x-for="topic in topics" :key="topic.id">
       <div class="mb-2">
@@ -113,14 +113,14 @@ $fakeData = [
 
         <h3 class="text-lg font-bold mb-2"><span x-text="active.data.title"></span></h3>
         <iframe   :src="active.data.url" class="w-full h-[500px] rounded shadow"  style="border: none;" 
-  oncontextmenu="return false;"></iframe>
+          oncontextmenu="return false;"></iframe>
       </div>
     </template>
 
     <template x-if="active.type === 'exam'">
-      <div>
-        <h3 class="text-lg font-bold mb-2"><span x-text="active.data.title"></span></h3>
-        <p class="text-gray-600">عرض الأسئلة أو رابط الامتحان هنا</p>
+      <div class="bg-white flex-1 p-4 mt-4 md:mt-0 md:ms-4 rounded-lg h-64">
+        <h3 class="text-lg font-bold text-center mb-2 text-theme-2"><span x-text="active.data.title"></span></h3>
+        <p class="text-gray-600"><a href="{{url('exam')}}" class="theme-btn-md"> اضغط لاداء الامتحان</a></p>
       </div>
     </template>
 
