@@ -7,10 +7,10 @@
 
              <!-- Logo -->
              <div class="flex items-start">
-                 <a href="" class="button-header rounded-md px-2  transition-colors ">
+                 <a href="{{route('home')}}" class="button-header rounded-md px-2  transition-colors ">
                      <img class="h-12 rounded-full " src="{{asset('images/logo.PNG')}}" alt="Logo">
                  </a>
-                 
+
              </div>
 
              
@@ -29,8 +29,9 @@
                                d="M6 18L18 6M6 6l12 12"/>
                      </svg>
                  </button>
+                 @if(request()->is('\topics'))
                 <button class="button-header mt-1 ms-1 focus:outline-none  lg:hidden md:block block" @click="toggleSidebar()"> @include('icons.intent')</button>
-
+                 @endif
              </div>
              
 
@@ -42,9 +43,8 @@
                <!-- grades Dropdown -->
                
                <!-- end grades Dropdown -->
-                 <a href="#" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{ __('lang.home') }}</a>
-                 <a href="#" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{ __('lang.courses') }}</a>
-                 <a href="{{route('login')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{__('lang.login')}} </a>
+                 <a href="{{route('home')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{ __('lang.home') }}</a>
+                 <a href="{{url('/courses')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{ __('lang.courses') }}</a>
                  
                  <div x-data="{ gradOpen: false }" class="relative drop-nav">
                   <button @click="gradOpen = !gradOpen"
@@ -71,6 +71,7 @@
              </div>
 
              <div class="hidden md:flex md:items-end md:space-x-4 rtl:space-x-reverse">
+                <a href="{{route('login')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{__('lang.login')}} </a>
 
                <button onclick="document.documentElement.classList.toggle('dark')" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
                   @include('layouts.icons.dark_mode') @include('layouts.icons.light-mode')
@@ -154,8 +155,8 @@
               </div>
            </div>
            <!-- end Language Dropdown -->
-             <a href="#" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.home') }}</a>
-             <a href="#" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.courses') }}</a>
+             <a href="{{route('home')}}" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.home') }}</a>
+             <a href="{{url('/courses')}}" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{ __('lang.courses') }}</a>
              <a href="{{route('login')}}" class="block hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">{{__('lang.login')}} </a>
 
          </div>

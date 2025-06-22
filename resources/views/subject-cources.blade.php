@@ -96,7 +96,7 @@
                         </div>
                         {{-- <p class="text-sm text-yellow-500">⭐</p> --}}
                         <p class="text-sm font-semibold"> 50</p>
-                        <a href="{{url('/topics')}}" class="block mt-2 bg-theme-4 text-theme-1 text-center px-3 py-1 rounded-full hover:bg-theme-3 text-sm">عرض التفاصيل</a>
+                        <a href="{{url('/topics')}}" class="block mt-2  theme-btn-md px-3 py-1 rounded-full hover:bg-theme-3 text-sm">عرض التفاصيل</a>
                     </div>
                 </div>
             @endfor
@@ -111,7 +111,7 @@
                         <p class="text-sm text-gray-600">الصف: {{ $course->grade->name }}</p>
                         <p class="text-sm text-yellow-500">⭐ {{ $course->rating ?? '0.0' }}</p>
                         <p class="text-sm font-semibold">{{ $course->price > 0 ? $course->price . ' جنيه' : 'مجاني' }}</p>
-                        <a href="{{ route('courses.show', $course) }}" class="inline-block mt-2 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm">عرض التفاصيل</a>
+                        <a href="{{ route('courses.show', $course) }}" class="bg-theme-3 text-white px-4 py-2 rounded-full hover:bg-theme-2 w-full">{{__('lang.show details')}}</a>
                     </div>
                 </div>
             @empty

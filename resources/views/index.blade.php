@@ -4,84 +4,84 @@
 
 @section('content')
 <style media="screen">
-.slideshow-container {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  position: relative;
-  max-width: 100%;
-}
-.slide-track {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  will-change: transform;
-}
-.mySlides {
-  flex: 0 0 33.3333%; /* 3 slides per view */
-  box-sizing: border-box;
-  transition: opacity 0.5s ease;
-
-}
-@media screen and (max-width: 1000px) {
+  .slideshow-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+  }
+  .slide-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+  }
   .mySlides {
-    flex: 0 0 50%; /* 3 slides per view */
+    flex: 0 0 33.3333%; /* 3 slides per view */
     box-sizing: border-box;
+    transition: opacity 0.5s ease;
+
+  }
+  @media screen and (max-width: 1000px) {
+    .mySlides {
+      flex: 0 0 50%; /* 3 slides per view */
+      box-sizing: border-box;
+
+    }
+
+  }
+  @media screen and (max-width: 650px) {
+    .mySlides {
+      flex: 0 0 100%; /* 3 slides per view */
+      box-sizing: border-box;
+
+    }
 
   }
 
-}
-@media screen and (max-width: 650px) {
-  .mySlides {
-    flex: 0 0 100%; /* 3 slides per view */
-    box-sizing: border-box;
-
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    padding: 16px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #888;
+    background-color: rgb(255, 255, 255);
+    z-index: 10;
   }
 
-}
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+  }
 
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  padding: 16px;
-  font-weight: bold;
-  font-size: 20px;
-  color: #888;
-  background-color: rgb(255, 255, 255);
-  z-index: 10;
-}
+  .prev {
+    left: 0;
+  }
 
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-  color: white;
-}
+  .next {
+    right: 0;
+  }
 
-.prev {
-  left: 0;
-}
+  .dot-container {
+    text-align: center;
+    padding: 10px;
+  }
 
-.next {
-  right: 0;
-}
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    display: inline-block;
+    border-radius: 50%;
+  }
 
-.dot-container {
-  text-align: center;
-  padding: 10px;
-}
-
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  display: inline-block;
-  border-radius: 50%;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
+  .active, .dot:hover {
+    background-color: #717171;
+  }
 
 </style>
 
@@ -112,7 +112,7 @@
         {{ __('lang.learn in a modern way with the best teachers and video lessons') }}
       </p>
 
-      <a href="#" class="theme-btn block w-52 bg-theme-3">
+      <a href="{{url('/courses')}}" class="theme-btn-md text-3xl font-bolder py-4 block w-80 ">
         {{ __('lang.start now') }}
       </a>
     </div>
@@ -183,6 +183,8 @@
           $path = ($subject->image) ? asset('storage/'.$subject->image)  : asset('images/subject.jpg')  ;
         @endphp
     
+   
+    
     <div class="mySlides ">
       <article tabindex="0" aria-label="Photography Basics Course" class=" md:max-w-sm sm:max-w-xs bg-white rounded-[4vw] shadow-md overflow-hidden cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600 mx-1">
           <img src="{{$path}}" alt="Camera on tripod" class="w-full h-64 object-cover rounded-t-xl" />
@@ -202,12 +204,11 @@
                 </div>
               </div>
             
-            <button class="btn-enroll bg-theme-3 hover:bg-theme-2 text-white text-lg font-bold">{{__('lang.Enroll Now')}}</button>
+            <a href="{{url('/topics')}}" class="theme-btn-md text-lg font-bold capitalize">{{__('lang.show details')}}</a>
 
           </div>
         </article>
     </div>
-    
   @empty
         <p>{{__('lang.No Grades Added Yet')}}</p>
   @endforelse
@@ -235,21 +236,24 @@
     <h3 id="teachersTitle" class="text-3xl font-bold mb-8 text-h3  tracking-wide select-none">{{__('lang.Meet Our Teachers')}}</h3>
     <div class=" w-full flex flex-wrap justify-center items-center gap-6 lg:gap-12">
       <article tabindex="0" aria-label="Teacher John Doe, Web Developer" class="bg-white  w-full sm:w-80 min-w-64 rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Photo of John Doe" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
+        <img src="{{asset('images/man.png')}}" alt="Photo of John Doe" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
         <h4 class="text-xl font-extrabold bg-white-text  mb-2">John Doe</h4>
         <p class="bg-white-text">Experienced full stack developer with a passion for teaching modern web technologies and best practices.</p>
+
       </article>
 
       <article tabindex="0" aria-label="Teacher John Doe, Web Developer" class="bg-white w-full sm:w-80 min-w-64 rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Photo of John Doe" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
+        <img src="{{asset('images/woman.png')}}" alt="Photo of John Doe" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
         <h4 class="text-xl font-extrabold bg-white-text  mb-2">John Doe</h4>
         <p class="bg-white-text">Experienced full stack developer with a passion for teaching modern web technologies and best practices.</p>
+
       </article>
 
       <article tabindex="0" aria-label="Teacher Mary Smith, Digital Marketing Expert" class="bg-white w-full sm:w-80 min-w-64 rounded-[4vw] shadow-lg p-8 flex flex-col items-center text-center cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Photo of Mary Smith" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
+        <img src="{{asset('images/man.png')}}" alt="Photo of Mary Smith" class="rounded-full w-32 h-32 object-cover border-4 border-theme mb-6" />
         <h4 class="text-xl font-extrabold bg-white-text mb-2">Mary Smith</h4>
         <p class="bg-white-text">Marketing strategist specializing in digital campaigns, SEO optimization, and brand growth storytelling.</p>
+
       </article>
 
       
@@ -257,6 +261,8 @@
       
     </div>
   </section>
+
+  
   <div class="w-full  my-3"></div>
   <!-- About Section -->
   <section id="about" aria-labelledby="aboutTitle" class=" select-text ">

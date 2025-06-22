@@ -10,13 +10,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <!-- Google Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
     body {
+      font-family: 'Cairo', sans-serif;
+    }
+    /* Custom focus outline for better accessibility */
+    :focus-visible {
+      outline: 2px solid #0f766e; /* teal-700 */
+      outline-offset: 2px;
+    }
+  <style>
+    /* body {
       font-family: 'Inter', sans-serif;
       background-color: #ffffff;
       color: #374151; /* neutral gray-700 */
       overflow-x: hidden;
-    }
+    } */
     /* Carousel styling */
     .carousel-container {
       position: relative;
