@@ -131,105 +131,28 @@
 </section>
 
   <!-- Featured Courses -->
-{{--
-  <section id="courses" aria-labelledby="coursesTitle" class="mb-16 ">
-    <h3 id="coursesTitle" class="text-3xl font-bold mb-8  text-h3 tracking-wide select-none">{{__('lang.featured courses')}}</h3>
-    <div class="overflow-x-auto scroll-auto ">
-        <!-- كرّر العناصر مرتين داخل نفس الديف لعمل تأثير دائري مستمر -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            <!-- انسخ كل العناصر هنا -->
-
-            <article tabindex="0" aria-label="Full Stack Web Development Course " class=" bg-white rounded-[4vw] shadow-md overflow-hidden cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-              <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60" alt="Laptop coding" class="w-full h-64 object-cover rounded-t-xl" />
-              <div class="p-6 flex flex-col h-full">
-                <h4 class="text-xl font-extrabold bg-white-text mb-2">{{__('Full Stack Web Development')}}</h4>
-                <p class="bg-white-text flex-grow">Learn to build modern web applications with HTML, CSS, JavaScript, and backend technologies.</p>
-              </div>
-            </article>
-
-           <article tabindex="0" aria-label="Digital Marketing Masterclass" class="bg-white rounded-[4vw] shadow-md overflow-hidden cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600">
-              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=60" alt="Digital marketing workspace" class="w-full h-64 object-cover rounded-t-xl" />
-              <div class="p-6 flex flex-col h-full">
-                <h4 class="text-xl font-extrabold bg-white-text mb-2">Digital Marketing Masterclass</h4>
-                <p class="bg-white-text flex-grow">Master SEO, social media marketing, and content strategy to grow your brand effectively.</p>
-              </div>
-            </article>
-
-           <article tabindex="0" aria-label="Photography Basics Course" class=" bg-white rounded-[4vw] shadow-md overflow-hidden cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600 mx-1">
-              <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=60" alt="Camera on tripod" class="w-full h-64 object-cover rounded-t-xl" />
-              <div class="p-6 flex flex-col h-full">
-                <h4 class="text-xl font-extrabold bg-white-text mb-2">Photography Basics</h4>
-                <p class="bg-white-text flex-grow">Get hands-on with composition, lighting, and editing techniques to take stunning photos.</p>
-              </div>
-           </article>
-            <!-- أضف باقي الكورسات بنفس الطريقة -->
-
-
-    </div>
-    </div>
-  </section>
---}}
 <div class="w-full  my-3"></div>
-<section id="courses" aria-labelledby="coursesTitle" class="mb-16  ">
-  <h3 id="coursesTitle" class="text-3xl font-bold mb-8  text-h3 tracking-wide select-none">{{__('lang.featured courses')}}</h3>
 
-<div class="slideshow-container flex flex-wrap justify-center items-center gap-4 md:gap-3  ">
-  @php
-    $subject_count = count($subjects);
-  @endphp
-  @forelse($subjects as $subject)
-        @php
-          $path = ($subject->image) ? asset('storage/'.$subject->image)  : asset('images/subject.jpg')  ;
-        @endphp
-    
-   
-    
-    <div class="mySlides ">
-      <article tabindex="0" aria-label="Photography Basics Course" class=" md:max-w-sm sm:max-w-xs bg-white rounded-[4vw] shadow-md overflow-hidden cursor-default select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600 mx-1">
-          <img src="{{$path}}" alt="Camera on tripod" class="w-full h-64 object-cover rounded-t-xl" />
-          <div class="p-6 flex flex-col h-full">
-            <h4 class="text-xl font-extrabold bg-white-text mb-2">{{$subject->name}}</h4>
-            <p class="bg-white-text flex-grow">{{ Str::limit($subject->description, 100) }}</p>
-            <div class=" flex flex-nowrap justify-between items-center overflow-x-auto gap-2  ">
-                <div class=" flex flex-nowrap justify-between items-center">
-                  <span class="text-gray-600 p-1 px-2 rounded-full m-2">@include('icons.users')</span>
-                  <span class="text-gray-600  p-1 px-2 rounded-full m-2">{{$subject->students_count}}</span>
-                  
-                </div>
-                  <div class=" flex flex-nowrap justify-between items-center">
-                  <span class="text-gray-600 p-1 px-2 rounded-full m-2">@include('icons.stage')</span>
-                  <span class="text-gray-600 p-1 px-2 rounded-full m-2">{{$subject->stages_count}}</span>
-                  
-                </div>
-              </div>
-            
-            <a href="{{url('/topics')}}" class="theme-btn-md text-lg font-bold capitalize">{{__('lang.show details')}}</a>
+<!-- <section id="courses12" aria-labelledby="coursesTitle11"  class="max-w-7xl"> -->
 
-          </div>
-        </article>
-    </div>
-  @empty
-        <p>{{__('lang.No Grades Added Yet')}}</p>
-  @endforelse
-  
-  
-  
 
-  <!-- <div class="mySlides">Slide 5: Cloud</div>
-  <div class="mySlides">Slide 6: Security</div> -->
-  <a class="prev rounded-full" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next rounded-full" onclick="plusSlides(1)">&#10095;</a>
+  <h3 id="coursesTitle" class="text-3xl font-bold my-8  text-h3 tracking-wide select-none">{{__('lang.featured courses')}}</h3>
 
-</div>
-  {{-- <div class="dot-container">
-    @for ($i=0 ;$i<$subject_count ;$i++ )
-    <span class="dot" onclick='currentSlide("{{$i}}")'></span>
+    <section class="mx-auto  ">
 
-    @endfor
-    
-  </div> --}}
-  </section>
+      <script id="subjects-data" type="application/json">
+        {!! $subjectsJson !!}
+      </script>
+
+      <div class="relative">
+        <div id="slider" class="flex transition-all duration-500 ease-in-out overflow-hidden lg:gap-12  md:gap-8  gap-2"></div>
+
+        <button onclick="prevSlide()" class="absolute left-0 top-1/2 -translate-y-1/2 bg-theme-2 text-white px-3 py-1 rounded-full z-10"> &#10094; </button>
+        <button onclick="nextSlide()" class="absolute right-0 top-1/2 -translate-y-1/2 bg-theme-2 text-white px-3 py-1 rounded-full z-10"> &#10095; </button>
+      </div>
+    </section>
+  <!-- </section> -->
   <div class="w-full  my-3"></div>
   <!-- Featured Teachers -->
   <section id="teachers" aria-labelledby="teachersTitle" class="mb-16 w-full">
@@ -261,8 +184,9 @@
       
     </div>
   </section>
+<div class="w-full  my-3"></div>
+ 
 
-  
   <div class="w-full  my-3"></div>
   <!-- About Section -->
   <section id="about" aria-labelledby="aboutTitle" class=" select-text ">
@@ -312,52 +236,117 @@
       </div>
   </section>
  </main>
- <script>
- let slideIndex = 0;
- setInterval(() => {
-   slideIndex += 1;
-   showSlides(slideIndex);
- }, 2000);
- const slides = document.getElementsByClassName("mySlides");
- const dots = document.getElementsByClassName("dot");
 
- function showSlides(n) {
-   const total = slides.length;
-   const slidesPerView = 3;
-   // تصحيح الـ index
-   if (n >= total) slideIndex = 0;
-   if (n < 0) slideIndex = total - slidesPerView;
 
-   // إخفاء كل الشرائح
-   for (let i = 0; i < total; i++) {
-     slides[i].style.display = "none";
-   }
+<script>
+  const subjects = JSON.parse(document.getElementById("subjects-data").textContent);
+  const usersIcon = `<svg width="22px" height="22px" viewBox="0 0 16 16" fill="none" >
+<path d="M8 3.5C8 4.88071 6.88071 6 5.5 6C4.11929 6 3 4.88071 3 3.5C3 2.11929 4.11929 1 5.5 1C6.88071 1 8 2.11929 8 3.5Z" fill="#85adad"/>
+<path d="M3 8C1.34315 8 0 9.34315 0 11V15H8V8H3Z" fill="#85adad"/>
+<path d="M13 8H10V15H16V11C16 9.34315 14.6569 8 13 8Z" fill="#85adad"/>
+<path d="M12 6C13.1046 6 14 5.10457 14 4C14 2.89543 13.1046 2 12 2C10.8954 2 10 2.89543 10 4C10 5.10457 10.8954 6 12 6Z" fill="#85adad"/>
+</svg>`;
+const stageIcon = `<svg width="22px" height="22px" viewBox="0 0 6.3500002 6.3500002" id="svg1976" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" >
+<defs id="defs1970"/>
+<g id="layer1" style="display:inline">
+<path d="m 0.26485,5.8204456 a 0.2645835,0.2645835 0 0 0 -0.26563,0.26563 0.2645835,0.2645835 0 0 0 0.26563,0.26367 h 5.82031 a 0.2645835,0.2645835 0 0 0 0.26562,-0.26367 0.2645835,0.2645835 0 0 0 -0.26562,-0.26563 z" id="path726"  style="color:#85adad;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#85adad;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#85adad;solid-opacity:1;vector-effect:none;fill:#85adad;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#85adad"/>
+<path d="m 1.16328,3.9688856 c -0.34722,0 -0.63476,0.28754 -0.63476,0.63477 v 1.48242 a 0.26460996,0.26460996 0 0 0 0.26562,0.26367 h 1.0586 a 0.26460996,0.26460996 0 0 0 0.26367,-0.26367 v -1.48242 c 0,-0.34723 -0.28755,-0.63477 -0.63477,-0.63477 z" id="path728" style="color:#85adad;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#85adad;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#85adad;solid-opacity:1;vector-effect:none;fill:#85adad;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#85adad"/>
+<path d="m 3.0168,3.0684956 c -0.34722,0 -0.63477,0.28753 -0.63477,0.63477 v 2.38281 a 0.26460996,0.26460996 0 0 0 0.26367,0.26367 h 1.0586 a 0.26460996,0.26460996 0 0 0 0.26367,-0.26367 v -2.38281 c 0,-0.34724 -0.28755,-0.63477 -0.63477,-0.63477 z" id="path730" style="color:#85adad;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#85adad;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#85adad;solid-opacity:1;vector-effect:none;fill:#85adad;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#85adad"/>
+<path d="m 4.86836,2.2755256 c -0.34722,0 -0.63477,0.28754 -0.63477,0.63477 v 3.17578 a 0.26460996,0.26460996 0 0 0 0.26368,0.26367 h 1.05859 a 0.26460996,0.26460996 0 0 0 0.26563,-0.26367 v -3.17578 c 0,-0.34723 -0.2895,-0.63477 -0.63672,-0.63477 z" id="path732" style="color:#85adad;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#85adad;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#85adad;solid-opacity:1;vector-effect:none;fill:#85adad;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#85adad"/>
+<path d="M 4.6205208,2.5237e-4 A 0.2645835,0.2645835 0 0 0 4.3564534,0.26380219 0.2645835,0.2645835 0 0 0 4.6205208,0.52941905 H 4.8938883 C 3.3974791,1.8159538 1.8306324,2.6151331 0.2161369,2.9142865 A 0.2645835,0.2645835 0 0 0 0.0052984,3.2227949 0.2645835,0.2645835 0 0 0 0.3117388,3.4357016 C 2.050091,3.1136013 3.722697,2.2498105 5.2923138,0.88753671 V 1.1991456 A 0.2645835,0.2645835 0 0 0 5.5558626,1.4647625 0.2645835,0.2645835 0 0 0 5.8214805,1.1991456 V 0.41986501 C 5.8215308,0.19150501 5.62816,2.0237e-4 5.3998008,2.5237e-4 Z" id="path734" style="color:#85adad;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#85adad;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#85adad;solid-opacity:1;vector-effect:none;fill:#006666;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#85adad"/>
+</g>
+</svg>`;
+  let currentIndex = 0;
+  const slider = document.getElementById("slider");
 
-   // عرض 3 شرائح بدءًا من slideIndex
-   for (let i = slideIndex; i < slideIndex + slidesPerView && i < total; i++) {
-     slides[i].style.display = "block";
-   }
+  
+  function getVisibleCount() {
+    const width = window.innerWidth;
+    if (width < 768) return 1;
+    if (width < 1000) return 2;
+    return 3;
+  }
 
-   // تحديث النقاط (dots)
-   for (let i = 0; i < dots.length; i++) {
-     dots[i].className = dots[i].className.replace(" active", "");
-   }
-   dots[Math.floor(slideIndex / slidesPerView)].className += " active";
+  function renderSlider() {
+    const visibleCount = getVisibleCount();
+    slider.innerHTML = "";
+    const url = @json(url('/topics'));
+    for (let i = 0; i < visibleCount; i++) {
+      const index = (currentIndex + i) % subjects.length;
+      const s = subjects[index];
 
- }
+      const card = document.createElement("article");
+      card.className = `
+        bg-white rounded-[4vw] shadow-md overflow-hidden 
+        select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600 
+        w-full md:w-[1/3] xl:w-80 lg:w-64 transform transition duration-500 ease-in-out opacity-0 scale-95
+      `;     
+       card.innerHTML = `
+        <img src="${s.image}" alt="${s.name}" class="w-full h-48 object-cover rounded-t-[4vw]" />
+        <div class="p-6 flex flex-col h-full">
+          <h2 class="text-2xl font-bold mb-2 text-teal-700">${s.name}</h2>
+          <p class="text-gray-700 mb-1"> ${s.grade}</p>
+          <p class="bg-white  ">${truncateText(s.description, 100)}</p>
+            <div class="flex items-center justify-between gap-4 mt-2">
+              <div class="flex items-center gap-1 text-gray-600">
+                ${usersIcon}<span>${s.students_count}</span>
+              </div>
+              <div class="flex items-center gap-1 text-gray-600">
+                ${stageIcon}<span>${s.stages_count}</span>
+              </div>
+            </div>
+          <a href="${url}" class="mt-4 inline-block bg-theme-2 text-white text-center py-2 px-4 rounded-full hover:bg-theme-1 shadow-lg capitalize transition">
+            مشاهدة التفاصيل
+          </a>
+        </div>
+      `;
+      slider.appendChild(card);
+      requestAnimationFrame(() => {
+        card.classList.remove('opacity-0', 'scale-95');
+        card.classList.add('opacity-100', 'scale-100');
+      });
+    }
+  }
+  function truncateText(text, maxLength) {
+    if (!text || typeof text !== 'string') return '';
+    return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+  }
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % subjects.length;
+    renderSlider();
+    resetAutoSlide();
+  }
 
- function plusSlides(n) {
-   slideIndex += n * 1;
-   showSlides(slideIndex);
- }
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + subjects.length) % subjects.length;
+    renderSlider();
+    resetAutoSlide();
+  }
 
- function currentSlide(n) {
-   slideIndex = (n - 1) * 1;
-   showSlides(slideIndex);
- }
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      nextSlide();
+    }, 2000);
+  }
 
- showSlides(slideIndex);
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
 
- </script>
+  function resetAutoSlide() {
+    stopAutoSlide();
+    startAutoSlide();
+  }
+
+  window.addEventListener("resize", renderSlider);
+  window.addEventListener("DOMContentLoaded", () => {
+    renderSlider();
+    startAutoSlide();
+  });
+
+  let autoSlideInterval;
+  
+</script>
+
 
 @endsection

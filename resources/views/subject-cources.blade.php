@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mx-auto  py-6">
-    <div class="flex flex-col md:flex-row gap-6">
+    <div class="flex flex-col md:flex-row gap-6 md:me-auto md:ms-auto me-4 ms-6">
 
        
         <aside class="md:w-1/4 w-full  bg-theme-5 text-h2 p-4 rounded-lg shadow space-y-4">
@@ -12,7 +12,7 @@
             <form method="GET" action="" class="space-y-4" x-data="{ price: '{{ request('price') }}' }" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                 <div>
                     <label class="block font-bold mb-1">الصف الدراسي</label>
-                    <select name="grade" class="w-full border border-input  focus:border-input rounded-lg px-2 py-1 rtl:rtl-select" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                    <select name="grade" class="w-full border border-input text-theme-2 focus:border-input rounded-lg px-2 py-1 rtl:rtl-select" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                         <option value="">الكل</option>
                         @foreach($grades as $grade)
                             <option value="{{ $grade->id }}" {{ request('grade') == $grade->id ? 'selected' : '' }}>{{ $grade->name }}</option>
@@ -22,7 +22,7 @@
 
                 <div>
                     <label class="block font-bold mb-1">المدرس</label>
-                    <select name="teacher" class="w-full border rounded px-2 py-1 rtl:rtl-select ">
+                    <select name="teacher" class="w-full border text-theme-2 focus:border-input rounded px-2 py-1 rtl:rtl-select ">
                         <option value="">الكل</option>
                         {{-- @foreach($teachers as $teacher)
                             <option value="{{ $teacher->id }}" {{ request('teacher') == $teacher->id ? 'selected' : '' }}>{{ $teacher->name }}</option>
@@ -32,7 +32,7 @@
 
                 <div>
                     <label class="block font-bold mb-1">السعر</label>
-                    <select name="price" x-model="price" class="w-full border rounded px-2 py-1 rtl:rtl-select">
+                    <select name="price" x-model="price" class="w-full border text-theme-2 focus:border-input rounded px-2 py-1 rtl:rtl-select">
                         <option value="">الكل</option>
                         <option value="free">مجاني</option>
                         <option value="paid">مدفوع</option>
@@ -42,15 +42,15 @@
                 <div x-show="price === 'paid'" x-transition>
                     <label class="block font-bold mb-1">نطاق السعر</label>
                     <div class="flex items-center gap-2">
-                        <input type="number" name="min_price" placeholder="من" class="w-full border rounded px-2 py-1" value="{{ request('min_price') }}">
+                        <input type="number" name="min_price" placeholder="من" class="w-full border focus:border-input rounded px-2 py-1" value="{{ request('min_price') }}">
                         <span class="text-gray-600">-</span>
-                        <input type="number" name="max_price" placeholder="إلى" class="w-full border rounded px-2 py-1" value="{{ request('max_price') }}">
+                        <input type="number" name="max_price" placeholder="إلى" class="w-full border focus:border-input rounded px-2 py-1" value="{{ request('max_price') }}">
                     </div>
                 </div>
 
                 <div>
                     <label class="block font-bold mb-1">التقييم</label>
-                    <select name="rating" class="w-full border rounded px-2 py-1 rtl:rtl-select">
+                    <select name="rating" class="w-full border text-theme-2 focus:border-input rounded px-2 py-1 rtl:rtl-select">
                         <option value="">الكل</option>
                         @for($i = 5; $i >= 1; $i--)
                             <option value="{{ $i }}" {{ request('rating') == $i ? 'selected' : '' }}>{{ $i }} نجوم فأعلى</option>
@@ -60,7 +60,7 @@
 
                 <div>
                     <label class="block font-bold mb-1">الترتيب حسب</label>
-                    <select name="sort" class="w-full border rounded px-2 py-1 rtl:rtl-select">
+                    <select name="sort" class="w-full border text-theme-2 focus:border-input rounded px-2 py-1 rtl:rtl-select">
                         <option value="">الأحدث</option>
                         <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>الأقدم</option>
                         <option value="rating" {{ request('sort') == 'rating' ? 'selected' : '' }}>الأعلى تقييمًا</option>
@@ -73,10 +73,10 @@
         </aside>
 
         {{-- الكورسات --}}
-        <main class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <main class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6">
             @for($j=1;$j<10 ;$j++ )
                 <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-md transition">
-                    <img src="{{asset('images/course.jpg')}}" alt="jhfjr" class="w-full h-40 object-cover">
+                    <img src="{{asset('images/course.jpg')}}" alt="jhfjr" class="w-full md:h-48 h-auto object-cover">
                     <div class="p-4 space-y-2">
                         <h2 class="text-lg font-bold">course name</h2>
                         <p class="text-sm text-gray-600">المدرس: </p>
@@ -103,7 +103,7 @@
 
             {{-- ////////////////////////////////////// --}}
             {{-- @forelse($courses as $course)
-                <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-md transition">
+                <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-md transition ">
                     <img src="{{ $course->image }}" alt="{{ $course->title }}" class="w-full h-40 object-cover">
                     <div class="p-4 space-y-2">
                         <h2 class="text-lg font-bold">{{ $course->title }}</h2>

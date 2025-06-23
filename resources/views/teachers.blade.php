@@ -49,18 +49,18 @@
     ],
   ];
 @endphp
-<section dir="rtl" class="py-12 bg-gray-100">
+<section dir="rtl" class="py-12 ">
   <div class="max-w-7xl mx-auto px-4">
-    <h1 class="text-3xl font-bold text-center text-gray-800 mb-10">جميع المدرسين</h1>
+    <h1 class="text-3xl font-bold text-center text-h1 mb-10">جميع المدرسين</h1>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       @foreach ($teachers as $teacher)
         <div class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
-          <img src="{{ asset('images/man.png')}}" class="w-full h-48 object-cover" alt="صورة المدرس">
+          <img src="{{ asset('images/man.png')}}" class="w-full md:h-60 h-auto object-cover" alt="صورة المدرس">
 
           <div class="p-4">
-            <h3 class="text-xl font-semibold text-gray-800">{{ $teacher["name"] }}</h3>
-            <p class="text-gray-600 mt-1">التخصص: {{ $teacher["specialization"] }}</p>
+            <h3 class="text-xl font-semibold text-theme-2">{{ $teacher["name"] }}</h3>
+            <p class="text-theme-3 mt-1">التخصص: {{ $teacher["specialization"] }}</p>
 
           
             <div class="my-4 w-full">

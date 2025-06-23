@@ -12,6 +12,11 @@ export default {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
     ],
+    safelist: [
+      'opacity-0', 'opacity-100',
+      'scale-95', 'scale-100',
+      'transition', 'transform', 'duration-500', 'ease-in-out'
+    ],
 
     theme: {
         extend: {

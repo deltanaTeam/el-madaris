@@ -69,7 +69,7 @@
 
       <!-- Logo & Social -->
       <div class="flex flex-col items-end space-y-4">
-        <img src="{{asset('images/logo.PNG')}}" alt="logo" class="rounded-full w-24 ">
+        <img src="{{asset('images/logo.png')}}" alt="logo" class="rounded-full w-24 ">
         <div class="flex space-x-3 rtl:space-x-reverse">
           <a href="#" class="footer-link">
             <span>

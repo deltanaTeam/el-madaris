@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-      dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}" class="dark bg-body">
+      dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}"   class="">
 <head>
+    <script>
+    (function () {
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (_) {}
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -11,7 +23,9 @@
 
   <title>{{config('app.name')}} -  @yield('title')</title>
   <!-- Tailwind CSS CDN -->
+
   @vite(['resources/css/app.css', 'resources/js/app.js'])
+  
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
     body {
@@ -46,7 +60,7 @@
     [x-cloak] { display: none !important; }
   </style>
 </head>
-<body class="min-h-screen   text-body font-cairo flex flex-col ">
+<body class="min-h-screen bg-body  text-body font-cairo flex flex-col ">
 
 
 
@@ -74,7 +88,20 @@
 
     </div>
   </div>
-  @include('layouts.footer')
 
+  @include('layouts.footer')
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    html.classList.toggle('dark');
+    localStorage.setItem('theme', newTheme);
+
+    // خزّنه ككوكي كمان عشان Blade يستخدمه
+    // document.cookie = `theme=${newTheme};path=/;max-age=31536000`;
+  }
+</script>
 </body>
 </html>

@@ -8,7 +8,7 @@
              <!-- Logo -->
              <div class="flex items-start">
                  <a href="{{route('home')}}" class="button-header rounded-md px-2  transition-colors ">
-                     <img class="h-12 rounded-full " src="{{asset('images/logo.PNG')}}" alt="Logo">
+                     <img class="h-12 rounded-full " src="{{asset('images/logo.png')}}" alt="Logo">
                  </a>
 
              </div>
@@ -29,7 +29,7 @@
                                d="M6 18L18 6M6 6l12 12"/>
                      </svg>
                  </button>
-                 @if(request()->is('\topics'))
+                 @if(request()->is('course'))
                 <button class="button-header mt-1 ms-1 focus:outline-none  lg:hidden md:block block" @click="toggleSidebar()"> @include('icons.intent')</button>
                  @endif
              </div>
@@ -74,7 +74,7 @@
              <div class="hidden md:flex md:items-end md:space-x-4 rtl:space-x-reverse">
                 <a href="{{route('login')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{__('lang.login')}} </a>
 
-               <button onclick="document.documentElement.classList.toggle('dark')" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
+               <button onclick="toggleTheme()" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
                   @include('layouts.icons.dark_mode') @include('layouts.icons.light-mode')
                </button>
                <!-- Language Dropdown -->
@@ -107,7 +107,7 @@
 
          <!-- Mobile Menu (Toggles) -->
          <div x-show="open" class="md:hidden mt-4 space-y-2">
-           <button onclick="document.documentElement.classList.toggle('dark')">
+           <button onclick="toggleTheme()">
               @include('layouts.icons.dark_mode') @include('layouts.icons.light-mode')
           </button>
            <!-- Language Dropdown -->

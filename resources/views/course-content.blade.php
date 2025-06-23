@@ -207,7 +207,7 @@ $fakeData = [
                 x-model="comment"
                 rows="4"
                 placeholder="اكتب تعليقك هنا..."
-                class="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-theme-3 mb-4 resize-none"
+                class="w-full p-3 rounded focus:border-input  focus:outline-none focus:ring-2 focus:ring-theme-3 mb-4 resize-none"
               ></textarea>
              <!-- end comment -->
 
@@ -249,6 +249,9 @@ $fakeData = [
      else if(sidebar.classList.contains('hidden')){
         sidebar.classList.remove('hidden');
         sidebar.classList.add('block');
+        sidebar.classList.add('ms-6');
+        sidebar.classList.add('me-4');
+
      }
      if(sidebar.classList.contains('sm:block')){
         sidebar.classList.remove('sm:block');
@@ -257,6 +260,8 @@ $fakeData = [
      else if(sidebar.classList.contains('sm:hidden')){
         sidebar.classList.remove('sm:hidden');
         sidebar.classList.add('sm:block');
+        sidebar.classList.add('ms-6');
+        sidebar.classList.add('me-4');
      }
     
     }
