@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Grade;
+use App\Models\Level;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\DataTables\GradeDataTable;
@@ -13,7 +13,7 @@ class GradeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    
+
 
     public function index(GradeDataTable $dataTable)
     {
@@ -36,13 +36,13 @@ class GradeController extends Controller
     public function store(Request $request)
     {
       $request->validate([
-        'name_ar' => ['required', 'string', 'max:90','unique:grades,name->ar'],
-        'name_en' => ['required', 'string', 'max:90','unique:grades,name->en'],
+        'name_ar' => ['required', 'string', 'max:90','unique:levels,name->ar'],
+        'name_en' => ['required', 'string', 'max:90','unique:levels,name->en'],
       ]);
-      $grade = new Grade;
-      $grade ->setTranslation('name', 'en',$request->name_en );
-      $grade ->setTranslation('name', 'ar',$request->name_ar );
-      $grade->save();
+      $level = new Level;
+      $level ->setTranslation('name', 'en',$request->name_en );
+      $level ->setTranslation('name', 'ar',$request->name_ar );
+      $level->save();
       return redirect()->route('admin.grades.index')->with('success','saved successfully');
     }
 
@@ -57,20 +57,20 @@ class GradeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Grade $grade)
+    public function edit(Level $level)
     {
-      return view('admin.grades.edit', compact('grade'));
+      return view('admin.grades.edit', compact('level'));
 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Grade $grade)
+    public function update(Request $request, Level $grade)
     {
       $request->validate([
-        'name_ar' => ['required', 'string', 'max:90',Rule::unique('grades','name->ar')->ignore($grade->id)],
-        'name_en' => ['required', 'string', 'max:90',Rule::unique('grades','name->ar')->ignore($grade->id)],
+        'name_ar' => ['required', 'string', 'max:90',Rule::unique('levels','name->ar')->ignore($grade->id)],
+        'name_en' => ['required', 'string', 'max:90',Rule::unique('levels','name->ar')->ignore($grade->id)],
 
       ]);
 
@@ -84,9 +84,9 @@ class GradeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Grade $grade)
+    public function destroy(Level $level)
     {
-      $grade->delete();
+      $level->delete();
 
       return redirect()->route('admin.grades.index')->with('success','deleted successfully');
     }

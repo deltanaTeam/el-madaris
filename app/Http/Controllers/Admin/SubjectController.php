@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Models\{Subject,User};
+use App\Models\{Subject,Course,User};
 use App\DataTables\SubjectDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +15,7 @@ class SubjectController extends Controller
      */
     public function index(SubjectDataTable $dataTable)
     {
-      $data['title'] = 'subjects';
+      $data['title'] = 'courses';
 
       return $dataTable->render('admin.index',compact('data'));
     }
@@ -40,7 +40,7 @@ class SubjectController extends Controller
           'name_ar'        => 'required|string|max:100',
           'description_ar' => 'nullable|string|max:500',
           'description_en' => 'nullable|string|max:500',
-          'grade'       => 'required|exists:grades,id',
+          'grade'       => 'required|exists:levels,id',
           'teacher'     => 'required|exists:users,id',
           'is_free'        => 'required|boolean',
           'price'          => 'nullable|numeric|min:0',
@@ -52,7 +52,7 @@ class SubjectController extends Controller
         $image = $request->file('image')->store('subjects/images', 'public');
 
       }
-      $subject = new Subject;
+      $subject = new Course;
       $subject ->setTranslation('name', 'en',$request->name_en );
       $subject ->setTranslation('name', 'ar',$request->name_ar );
       $subject ->setTranslation('description', 'en',$request->description_en );
@@ -71,15 +71,15 @@ class SubjectController extends Controller
      */
     public function show(string $id)
     {
-        $subject = Subject::with('teacher','grade')->withAvg('ratings','rating')->withCount('students','stages')->findOrFail($id);
-        return view('admin.subjects.edit', compact('subject'));
+        // $subject = Subject::with('teacher','level')->withAvg('ratings','rating')->withCount('students','stages')->findOrFail($id);
+        // return view('admin.subjects.edit', compact('subject'));
 
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Subject $subject)
+    public function edit(Course $subject)
     {
       $teachers = User::get();
       return view('admin.subjects.edit', compact('subject', 'teachers'));
@@ -88,14 +88,14 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Subject $subject)
+    public function update(Request $request, Course $subject)
     {
       $request->validate([
            'name_en'        => 'required|string|max:100',
           'name_ar'        => 'required|string|max:100',
           'description_ar' => 'nullable|string|max:500',
           'description_en' => 'nullable|string|max:500',
-          'grade'       => 'required|exists:grades,id',
+          'grade'       => 'required|exists:levels,id',
           'teacher'     => 'required|exists:users,id',
           'is_free'        => 'required|boolean',
           'price'          => 'nullable|numeric|min:0',
@@ -125,8 +125,8 @@ class SubjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Subject $subject)
-    { 
+    public function destroy(Course $subject)
+    {
       if (Storage::disk('public')->exists($subject->image))
       {
         Storage::disk('public')->delete($subject->image);

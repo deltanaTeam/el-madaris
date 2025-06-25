@@ -15,6 +15,7 @@ for ($i = 1; $i <= 20; $i++) {
             "اختيار B للسؤال $i",
             "اختيار C للسؤال $i",
             "اختيار D للسؤال $i",
+
         ],
     ]);
 }
@@ -38,15 +39,15 @@ for ($i = 1; $i <= 20; $i++) {
             <div x-show="currentPage === Math.floor(index / questionsPerPage) + 1" class="mb-6 bg-white rounded-lg py-3 px-4">
                 <h2 class="font-bold text-xl mb-2" x-text="'السؤال رقم ' + (index + 1)"></h2>
                 <p class="mb-4" x-text="question.text"></p>
-                <div class="flex flex-col md:flex-row md:flex-wrap gap-4 mx-auto">
+                <div class="flex flex-col md:flex-row md:flex-wrap gap-4 lg:gap-12 mx-auto ">
 
                    <template x-for="(choice, i) in question.choices" :key="i" class="mx-auto ">
-                     <label class=" w-full md:w-[50%] lg:w-[20%] flex items-center  p-3 rounded cursor-pointer hover:bg-gray-200 peer-checked:bg-theme-3 peer-checked:text-h2 ">
-                        <input type="radio" 
+                     <label class=" bg-gray-200 w-full md:w-[33%] lg:w-[20%] flex items-center  p-3 rounded cursor-pointer hover:bg-gray-400 peer-checked:bg-sky-500 peer-checked:text-h2 ">
+                        <input type="radio"
                             :name="'answers[' + question.id + ']'"
                             :value="choice"
-                            class="me-2 text-theme-1 "
-                            
+                            class="me-2 text-theme-1 h-5 w-5   peer-checked:text-2xl  "
+
                         >
                         <span x-text="choice" class="text-sm "></span>
                      </label>

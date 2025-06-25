@@ -38,19 +38,19 @@ class SubjectDataTable extends DataTable
         ->addColumn('description_en', function ($query) {
             return  $query->getTranslation('description','en');
         })
-        ->editColumn('teacher_id', function ($query) {
-            return $query->teacher?$query->teacher->name:"";
-        })
-        ->editColumn('grade_id', function ($query) {
-            return $query->grade?$query->grade->name:"";
-        })
+        // ->editColumn('teacher_id', function ($query) {
+        //     return $query->teacher?$query->teacher->name:"";
+        // })
+        // ->editColumn('grade_id', function ($query) {
+        //     return $query->grade?$query->grade->name:"";
+        // })
 
-      
+
       ->addColumn('checkbox',  '<label class="Banzima-check-container ">
                      <input type="checkbox" name="checked[]" value="{{$id}}" class="check_row" form="delete_all_form" >
                      <span class="banzima-check-checkmark "></span>
                    </label>')
-      
+
 
 
       ->addIndexColumn()
@@ -79,7 +79,7 @@ class SubjectDataTable extends DataTable
      */
     public function html(): HtmlBuilder
     {
-    
+
       $lang = new DataTableLang;
       $lang_data = $lang->get_lang();
       $design = new DesignButton;
@@ -103,7 +103,7 @@ class SubjectDataTable extends DataTable
                     ->selectStyleSingle()
                     ->parameters($parameters);
 
-                    
+
     }
 
     /**
@@ -116,10 +116,10 @@ class SubjectDataTable extends DataTable
             Column::make('DT_RowIndex')->title('S/No')->orderable(false)->searchable(false)->addClass('font-weight-bolder h6  text-capitalize text-nowrap text-center'),
             Column::make('name_ar')->title(__('lang.name_ar'))->addClass('font-weight-bolder h6  text-dark text-capitalize text-nowrap text-center'),
             Column::make('name_en')->title(__('lang.name_en'))->addClass('font-weight-bolder h6  text-dark text-capitalize text-nowrap text-center'),
-            Column::make('teacher_id')->title(__('lang.teacher'))->addClass('font-weight-bolder h6  text-dark text-capitalize text-nowrap text-center'),
-            Column::make('grade_id')->title(__('lang.grade'))->addClass('font-weight-bolder h6  text-dark text-capitalize text-nowrap text-center'),
-            Column::make('is_free')->title(__('lang.is_free'))->addClass('font-weight-bolder h6  text-dark text-capitalize text-nowrap text-center'),
-            Column::make('price')->title(__('lang.price'))->addClass('font-weight-bolder h6  text-dark text-capitalize text-nowrap text-center'),
+            // Column::make('teacher_id')->title(__('lang.teacher'))->addClass('font-weight-bolder h6  text-dark text-capitalize text-nowrap text-center'),
+            // Column::make('grade_id')->title(__('lang.grade'))->addClass('font-weight-bolder h6  text-dark text-capitalize text-nowrap text-center'),
+            // Column::make('is_free')->title(__('lang.is_free'))->addClass('font-weight-bolder h6  text-dark text-capitalize text-nowrap text-center'),
+            // Column::make('price')->title(__('lang.price'))->addClass('font-weight-bolder h6  text-dark text-capitalize text-nowrap text-center'),
 
             Column::computed('action')->title(__('lang.action'))->exportable(false)->printable(false)->orderable(false)->searchable(false)->width(60)->addClass('text-center font-weight-bolder h6  text-capitalize'),
         ];

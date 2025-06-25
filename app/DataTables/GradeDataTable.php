@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Grade;
+use App\Models\Level;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -32,12 +32,12 @@ class GradeDataTable extends DataTable
       ->addColumn('name_en', function ($query) {
             return  $query->getTranslation('name','en');
         })
-      
+
       ->addColumn('checkbox',  '<label class="Banzima-check-container ">
                      <input type="checkbox" name="checked[]" value="{{$id}}" class="check_row" form="delete_all_form" >
                      <span class="banzima-check-checkmark "></span>
                    </label>')
-      
+
 
 
       ->addIndexColumn()
@@ -54,7 +54,7 @@ class GradeDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Grade $model): QueryBuilder
+    public function query(Level $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -88,7 +88,7 @@ class GradeDataTable extends DataTable
                     ->selectStyleSingle()
                     ->parameters($parameters);
 
-                    
+
     }
 
     /**
