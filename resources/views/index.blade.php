@@ -117,13 +117,9 @@
       </a>
     </div>
     <div class="md:col-span-3 lg:col-span-2 sm:grid-cols-5 relative w-full  md:h-full">
-      @if(app()->getLocale() === 'en')
+
        <img src="{{ asset('images/home2.png') }}" alt="Hero Image"
-        class="w-full h-full object-cover rounded-[4vw] " />
-      @else
-       <img src="{{ asset('images/home2.png') }}" alt="Hero Image"
-          class="w-full h-full object-cover rounded-[4vw] transform -scale-x-100" />
-      @endif
+          class="w-full h-full object-cover rounded-[4vw] @if(app()->getLocale() === 'ar') transform -scale-x-100 @endif" />
       <!-- نص في أعلى الصورة -->
 
     </div>
@@ -142,7 +138,7 @@
     <section class="mx-auto  ">
 
       <script id="subjects-data" type="application/json">
-        {!! $subjectsJson !!}
+        {!! $coursesJson !!}
       </script>
 
       <div class="relative">
@@ -179,13 +175,13 @@
 
       </article>
 
-      
 
-      
+
+
     </div>
   </section>
 <div class="w-full  my-3"></div>
- 
+
 
   <div class="w-full  my-3"></div>
   <!-- About Section -->
@@ -210,7 +206,7 @@
 
       </div>
       <div class="rounded-[4vw] sm:col-span-2 ">
-        <img src="{{asset('images/home.png')}}" alt="img" class=" min-h-80  rounded-[4vw]">
+        <img src="{{asset('images/site1.png')}}" alt="img" class=" min-h-80  rounded-[4vw]">
       </div>
     </div>
 
@@ -259,7 +255,7 @@ const stageIcon = `<svg width="22px" height="22px" viewBox="0 0 6.3500002 6.3500
   let currentIndex = 0;
   const slider = document.getElementById("slider");
 
-  
+
   function getVisibleCount() {
     const width = window.innerWidth;
     if (width < 768) return 1;
@@ -277,12 +273,18 @@ const stageIcon = `<svg width="22px" height="22px" viewBox="0 0 6.3500002 6.3500
 
       const card = document.createElement("article");
       card.className = `
-        bg-white rounded-[4vw] shadow-md overflow-hidden 
-        select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600 
+        bg-white rounded-[4vw] shadow-md overflow-hidden
+        select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-teal-600
         w-full md:w-[1/3] xl:w-80 lg:w-64 transform transition duration-500 ease-in-out opacity-0 scale-95
-      `;     
+      `;
        card.innerHTML = `
-        <img src="${s.image}" alt="${s.name}" class="w-full h-48 object-cover rounded-t-[4vw]" />
+        <div class="relative w-full rounded-lg">
+
+          <img src="${s.image}" alt="${s.name}" class=" @if(app()->getLocale() === 'en') transform -scale-x-100 @endif w-full h-48 object-cover rounded-t-[4vw]" />
+          <div class="absolute  p-2 inset-0 flex items-center justify-end text-center text-white font-bold">
+              <h1 class="text-3xl p-2"> كورسات مدرستك</h1>
+          </div>
+        </div>
         <div class="p-6 flex flex-col h-full">
           <h2 class="text-2xl font-bold mb-2 text-teal-700">${s.name}</h2>
           <p class="text-gray-700 mb-1"> ${s.grade}</p>
@@ -345,7 +347,7 @@ const stageIcon = `<svg width="22px" height="22px" viewBox="0 0 6.3500002 6.3500
   });
 
   let autoSlideInterval;
-  
+
 </script>
 
 

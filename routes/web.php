@@ -22,26 +22,26 @@ use App\Http\Controllers\GradeController as StGradeController;
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 {
-
-//   Route::prefix('admin')->name('admin.')->group(function () {
-//       Route::resource('grades', GradeController::class);
-//       Route::delete('grades/delete-all',[GradeController::class,'deleteAll'])->name('grades.delete-all');
-//       Route::get('dashboard', [HomeController::class,'index'])->name('dashboard');
-//       Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//       Route::resource('subjects', SubjectController::class);
-//       Route::delete('subjects/delete-all',[SubjectController::class,'deleteAll'])->name('subjects.delete-all');
-
-//       Route::resource('exams', ExamController::class);
-//       Route::resource('videos', VideoController::class);
-//       Route::resource('files', FileController::class);
-//       Route::resource('stages', StageController::class);
-
-
-//       Route::resource('students', StudentController::class)->only(['index', 'edit', 'update', 'destroy']);
-//       Route::resource('teachers', TeacherController::class)->only(['index', 'edit', 'update', 'destroy']);
-//       Route::post('teachers/{user}/approve', [TeacherController::class, 'approve'])->name('teachers.approve');
-//       Route::post('teachers/{user}/reject', [TeacherController::class, 'reject'])->name('teachers.reject');
-//   });
+  //
+  // Route::prefix('admin')->name('admin.')->group(function () {
+  //     Route::resource('grades', GradeController::class);
+  //     Route::delete('grades/delete-all',[GradeController::class,'deleteAll'])->name('grades.delete-all');
+  //     Route::get('dashboard', [HomeController::class,'index'])->name('dashboard');
+  //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  //     Route::resource('subjects', SubjectController::class);
+  //     Route::delete('subjects/delete-all',[SubjectController::class,'deleteAll'])->name('subjects.delete-all');
+  //
+  //     Route::resource('exams', ExamController::class);
+  //     Route::resource('videos', VideoController::class);
+  //     Route::resource('files', FileController::class);
+  //     Route::resource('stages', StageController::class);
+  //
+  //
+  //     Route::resource('students', StudentController::class)->only(['index', 'edit', 'update', 'destroy']);
+  //     Route::resource('teachers', TeacherController::class)->only(['index', 'edit', 'update', 'destroy']);
+  //     Route::post('teachers/{user}/approve', [TeacherController::class, 'approve'])->name('teachers.approve');
+  //     Route::post('teachers/{user}/reject', [TeacherController::class, 'reject'])->name('teachers.reject');
+  // });
 
 
 
@@ -65,8 +65,17 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
   Route::get('/exam', function () {
       return view('exam');
   });
+  Route::get('/subjects', function () {
+      return view('subjects');
+  });
   Route::get('/courses', function () {
+      return view('courses');
+  });
+  Route::get('/subject-cources', function () {
       return view('subject-cources');
+  });
+  Route::get('/teacher-courses', function () {
+      return view('teacher-courses');
   });
   Route::get('/teachers', function () {
       return view('teachers');

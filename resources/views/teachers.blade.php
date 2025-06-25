@@ -49,7 +49,7 @@
     ],
   ];
 @endphp
-<section dir="rtl" class="py-12 ">
+<section  class="py-12 ">
   <div class="max-w-7xl mx-auto px-4">
     <h1 class="text-3xl font-bold text-center text-h1 mb-10">جميع المدرسين</h1>
 
@@ -62,17 +62,17 @@
             <h3 class="text-xl font-semibold text-theme-2">{{ $teacher["name"] }}</h3>
             <p class="text-theme-3 mt-1">التخصص: {{ $teacher["specialization"] }}</p>
 
-          
+
             <div class="my-4 w-full">
-              <a href="{{url('teachers\show')}}" class="rounded-full text-white text-center block px-3 py-2 my-4 transition-colors text-sm  bg-theme-3 hover:bg-theme-2 ">
+              <a href="{{url('teachers\show')}}" class="rounded-full text-white text-center block px-3 py-2 my-4 transition-colors text-sm  theme-btn-md ">
                           عرض الملف الشخصي
               </a>
             </div>
-            
+
           </div>
         </div>
-      
-        
+
+
       @endforeach
     </div>
   </div>

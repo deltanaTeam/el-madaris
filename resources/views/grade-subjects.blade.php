@@ -11,16 +11,16 @@
    <div class="flex items-center max-w-5xl gap-1 w-full">
     <form action="" method="get" class="flex w-3/4" id="oneSearch">
       <div class="relative w-full">
-        <span class="absolute inset-y-0 start-0 flex items-center ps-3 text-gray-500">@include('icons.search')</span>
+        <span class="absolute inset-y-0 start-0 flex items-center ps-3 text-theme-1">@include('icons.search')</span>
       
-        <input type="text" name="search" form="oneSearch" id="" placeholder="{{__('lang.search....')}}" value="{{ request('search')}}" class=" w-full ps-10 pe-4 py-2 border border-gray-300 rounded-[2vh] focus:outline-none focus:ring-0 focus:border-gray-400 w-full">
+        <input type="text" name="search" form="oneSearch" id="" placeholder="{{__('lang.search....')}}" value="{{ request('search')}}" class=" w-full ps-10 pe-4 py-2 border border-form-input rounded-[2vh] focus:outline-none focus:ring-0 focus:border-input w-full">
       </div>
-      <button type="submit" form="oneSearch" class="bg-white text-theme-2 px-4 py-2 ms-1 rounded-[2vh] hover:bg-gray-100">@include('icons.search')</button>
+      <button type="submit" form="oneSearch" class="bg-white text-theme-2 px-4 py-2 ms-1 rounded-[2vh] hover:bg-sky-200">@include('icons.search')</button>
 
       </form>
     
     
-    <button @click="open = !open" class="bg-white text-theme-2 px-4 py-2 rounded-[2vh] hover:bg-gray-100">@include('icons.filter')</button>
+    <button @click="open = !open" class="bg-white text-theme-2 px-4 py-2 rounded-[2vh] hover:bg-sky-200">@include('icons.filter')</button>
     </div> 
     <form  id="multiSearch" action="" method="get" x-show="open" x-transition @click.away="open = false" class="mt-4 w-4/5 space-y-4 bg-white p-4 rounded-[2vh] shadow border">
       <div class="grid grid-cols-1 md:grid-cols-6 gap-4">

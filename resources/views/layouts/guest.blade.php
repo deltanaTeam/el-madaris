@@ -25,12 +25,12 @@
   <!-- Tailwind CSS CDN -->
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
-  
+
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
     body {
       font-family: 'Cairo', sans-serif;
-      
+
     }
     /* Custom focus outline for better accessibility */
     :focus-visible {
@@ -66,6 +66,16 @@
 
   @include('welcome_heade')
   <div class="bg-body">
+    @php
+    $conver_image = "";
+    if(app()->getLocale() === 'en'){
+      $conver_image = "";
+    }
+    else if(app()->getLocale() === 'ar'){
+      $conver_image = "-scale-x-100";
+    }
+    @endphp
+
     @include('layouts.alert')
 
     @yield('content')

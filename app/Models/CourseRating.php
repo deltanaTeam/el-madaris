@@ -5,18 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubjectStudent extends Model
+class CourseRating extends Model
 {
     use HasFactory;
-    protected $fillable = ['student_id', 'subject_id', 'paid'];
+    use HasFactory;
+    protected $fillable = ['student_id', 'course_id', 'rating', 'comment'];
+    public $translatable = ['comment'];
 
     public function student()
     {
         return $this->belongsTo(User::class, 'student_id');
     }
 
-    public function subject()
+    public function course()
     {
-        return $this->belongsTo(Subject::class);
+        return $this->belongsTo(Course::class);
     }
 }

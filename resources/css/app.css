@@ -26,6 +26,10 @@
   .text-shadow-teal-300 {
     text-shadow: 1px 1px 4px #00e6e6; /* هذا هو لون lime-300 من Tailwind */
   }
+  .border-form-input{
+        @apply border-sky-500   ;
+
+  }
   .btn-enroll {
     font-weight: 300;
     padding: 0.5rem 1.25rem;
@@ -33,7 +37,7 @@
     text-align: center;
     user-select:none;
     transition: background-color 0.3s ease;
-    box-shadow: 0 4px 6px rgb(5 150 105 / 0.5);
+    box-shadow: 0 4px 6px #4572ba;
     cursor: pointer;
   }
   .btn-enroll:hover, .btn-enroll:focus {
@@ -53,140 +57,146 @@
 }
   /* === Light Theme === */
   .bg-header {
-    @apply bg-lime-50 ;
+    @apply bg-sky-900 text-white  ;
   }
   .text-body {
-    @apply text-lime-900;
+    @apply text-sky-900;
   }
   .text-theme-1{
-    @apply text-lime-900;
+    @apply text-sky-900;
   }
   .text-theme-2{
-    @apply text-lime-700;
+    @apply text-sky-700;
   }
   .text-theme-3{
-    @apply text-lime-500;
+    @apply text-sky-500;
   }
   .border-input{
-    @apply border border-lime-600  rounded focus:border-lime-300 focus:shadow ;
+    @apply border border-sky-600  rounded focus:border-sky-300 focus:shadow ;
   }
   .bg-theme-1{
-    @apply bg-lime-800 text-white;
+    @apply bg-sky-800 text-white;
   }
   .bg-theme-2{
-    @apply bg-lime-600;
+    @apply bg-sky-600;
   }
   .bg-theme-3{
-    @apply bg-lime-400;
+    @apply bg-sky-400;
   }
   .bg-theme-4{
-    @apply bg-lime-300;
+    @apply bg-sky-300;
   }
   .bg-theme-5{
-    @apply bg-lime-300/20;
+    @apply bg-sky-300/20;
   }
   .text-h1 {
-    @apply text-lime-900;
+    @apply text-sky-900;
   }
   .text-h2 {
-    @apply text-lime-800;
+    @apply text-sky-800;
   }
   .text-h3 {
-    @apply text-lime-700;
+    @apply text-sky-700;
   }
   .text-h4 {
-    @apply text-lime-600;
+    @apply text-sky-600;
   }
   .text-p {
-    @apply text-lime-500;
+    @apply text-sky-500;
   }
   .theme-btn{
-      @apply m-2 rounded-full text-white px-3 py-2 transition-colors lg:text-3xl md:text-2xl sm:text-xl bg-lime-500 hover:bg-lime-700 ;
+      @apply m-2 rounded-full text-white px-3 py-2 transition-colors lg:text-3xl md:text-2xl sm:text-xl bg-sky-500 hover:bg-sky-700 ;
   }
   .theme-btn-md{
-      @apply m-2 rounded-[2vw] btn-enroll text-white lg:text-xl md:text-lg sm:text-base bg-lime-500 hover:bg-lime-700 ;
+      @apply m-2 rounded-[2vw] btn-enroll text-white lg:text-xl md:text-lg sm:text-base bg-sky-600 hover:bg-sky-800 ;
   }
   .bg-hero{
    @apply bg-white py-8 px-4 rounded-[10vw] ;
   }
 
   .text-header {
-    @apply text-lime-900 font-bold text-lg;
+    @apply text-white font-bold text-lg;
   }
   .text-theme-title{
-    @apply text-lime-800 uppercase text-shadow-lg text-shadow-lime-300;
+    @apply text-sky-800 uppercase text-shadow-lg ;
   }
   .text-subheader {
-    @apply text-lime-800;
+    @apply text-sky-700;
   }
    .side-theme{
-     @apply bg-white text-lime-700 my-5 rounded-lg;
+     @apply bg-white text-sky-700 my-5 rounded-lg;
       
    }
    .side-sub-list{
     @apply flex items-center space-x-2 shadow py-3 px-2  w-full rounded-lg block text-start;
    }
   .bg-body {
-    @apply bg-lime-100;
+    @apply bg-gray-100;
   }
   .bg-footer{
-    @apply bg-lime-200/30  text-lime-900;
+    @apply bg-sky-950  text-white;
   }
   .head-img{
     @apply bg-clip-content bg-contain h-auto;
   }
 
   .button-header {
-    @apply  text-lime-700 hover:text-lime-500 ;
+    @apply  text-white hover:text-sky-400 ;
   }
   .active-link {
-    @apply text-lime-500  font-semibold rounded;
+    @apply text-sky-200  font-semibold rounded;
   }
   .border-theme{
-    @apply border-lime-600;
+    @apply border-sky-600;
   }
   .bg-white-text{
-   @apply text-lime-700  ;
+   @apply text-sky-700  ;
   }
   .login-header {
-    @apply p-1 bg-white rounded-full text-lime-600 hover:text-lime-900;
+    @apply p-1 bg-white rounded-full text-sky-600 hover:text-sky-900;
   }
   .bg-text-img{
-      @apply bg-lime-500/50  p-5 text-lime-900;
+      @apply bg-sky-500/50  p-5 text-sky-900;
   }
   .footer-link{
-    @apply   text-lime-800 hover:text-lime-600;
+    @apply   text-white hover:text-sky-400;
   }
+   .collapsed-content{
+     @apply bg-sky-100/70 text-sky-800 mb-5;
+
+   }
   /* === Dark Theme Overrides === */
   .dark .footer-link{
-    @apply   text-white hover:text-teal-300;
+    @apply   text-white hover:text-sky-400;
   }
   .dark .bg-text-img{
       @apply bg-lime-100/50  p-5 text-teal-950;
   }
   .dark .active-link {
-    @apply text-teal-100 ;
+    @apply text-sky-500 ;
   }
   .dark .border-theme{
-    @apply border-teal-600;
+    @apply border-sky-600;
   }
   .dark .bg-header {
-    @apply bg-teal-900;
+    /* @apply bg-sky-900; */
+    background-color: #213445  ;
   }
   .dark .text-theme-title{
-    @apply text-teal-800 uppercase text-shadow-lg text-shadow-teal-300;
+    @apply text-sky-800 uppercase text-shadow-lg text-shadow-teal-300;
   }
   .dark .bg-footer{
-    @apply bg-teal-900 text-white;
+        background-color: #213445  ;
+     color:#ffffff;
   }
   .dark .theme-btn{
-      @apply m-3 rounded-full text-teal-800 px-3 py-2 transition-colors lg:text-3xl md:text-2xl sm:text-xl bg-teal-300 hover:bg-teal-200 ;
+      @apply m-3 rounded-full text-sky-800 px-3 py-2 transition-colors lg:text-3xl md:text-2xl sm:text-xl bg-teal-300 hover:bg-teal-500 ;
   }
   .dark .theme-btn-md{
-      @apply  btn-enroll text-teal-800   lg:text-xl md:text-lg sm:text-base bg-teal-300 hover:bg-teal-200 ;
+      @apply  btn-enroll text-sky-50   lg:text-xl md:text-lg sm:text-base bg-sky-900 hover:bg-sky-700 ;
   }
   .dark .bg-body {
-    @apply bg-teal-950 ;
+    background-color:  #192734;
   }
   .dark .head-img{
     @apply bg-clip-content bg-contain h-full  ;
@@ -196,71 +206,80 @@
   }
 
   .dark .text-subheader {
-    @apply text-teal-50;
+    @apply text-sky-50;
   }
   .dark .bg-hero{
-   @apply bg-teal-700 py-8 px-4 rounded-[10vw] ;
+   @apply bg-sky-700 py-8 px-4 rounded-[10vw] ;
   }
   .dark .bg-white-text{
-   @apply text-teal-700  ;
+   @apply text-sky-700  ;
   }
 
   .dark .login-header {
-    @apply p-2 bg-teal-900 rounded-full text-white hover:text-teal-100;
+    @apply p-2 bg-sky-900 rounded-full text-white hover:text-sky-100;
   }
 
   .dark .button-header {
-    @apply  text-white hover:text-teal-100;
+    @apply  text-white hover:text-sky-400;
   }
   .dark .text-body {
-    @apply bg-lime-900;
+    @apply bg-sky-900;
   }
 
   .dark .text-h1 {
     @apply text-white;
   }
   .dark .text-h2 {
-    @apply text-lime-50;
+    @apply text-sky-50;
   }
 
   .dark .text-h3 {
-    @apply text-lime-50;
+    @apply text-sky-100;
   }
   .dark .text-h4 {
-    @apply text-lime-100;
+    @apply text-sky-200;
   }
   .dark .text-p {
-    @apply text-teal-200;
+    @apply text-sky-300;
   }
   .dark .text-theme-1{
-    @apply text-teal-900;
+    @apply text-sky-900;
   }
   .dark .text-theme-2{
-    @apply text-teal-700;
+    @apply text-sky-700;
   }
   .dark .text-theme-3{
-    @apply text-teal-500;
+    @apply text-sky-500;
   }
   .dark .bg-theme-1{
-    @apply bg-teal-800;
+    @apply bg-sky-800;
   }
   .dark .bg-theme-2{
-    @apply bg-teal-600;
+    @apply bg-sky-600;
   }
   .dark .side-theme{
-     @apply bg-teal-600 text-teal-100 mb-5;
+     @apply bg-sky-950/70 text-sky-100 mb-5;
    }
+   .dark .collapsed-content{
+     @apply bg-sky-800/70 text-sky-100 mb-5;
+
+   }
+   
   .dark .bg-theme-3{
-    @apply bg-teal-400;
+    @apply bg-sky-400;
   }
   .dark .bg-theme-4{
-    @apply bg-teal-200;
+    @apply bg-sky-200;
   }
   .dark .bg-theme-5{
-    @apply bg-teal-200/20;
+    @apply bg-sky-200/20;
   }
   .dark .border-input{
-    @apply border border-teal-300  rounded focus:border-teal-200 focus:shadow ;
+    @apply border border-sky-300  rounded focus:border-sky-200 focus:shadow ;
+
+  }
+  .dark .border-form-input{
+    @apply border border-sky-700   ;
 
   }
 

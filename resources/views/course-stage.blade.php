@@ -8,35 +8,35 @@
     <h1 class="text-2xl md:text-4xl  text-h1 text-center capitalize my-6  p-6"> {{__('lang.course contents')}}</h1>
     <div x-data="{ tab: 'info' }" class="w-full max-w-5xl mx-auto mb-6  md:w-[90%] w-[90%] ">
 
-    <div class="flex justify-between border-b border-gray-200 mb-6 "> 
+    <div class="flex justify-between border-b border-gray-200 mb-6 ">
       <div class="flex">
 
-        <button 
-        @click="tab = 'info'" 
-        :class="tab === 'info' ? 'border-theme-3 text-theme-3' : 'border-transparent text-gray-400 hover:text-theme-3'" 
+        <button
+        @click="tab = 'info'"
+        :class="tab === 'info' ? 'border-theme-3 text-theme-3' : 'border-transparent text-gray-400 hover:text-theme-3'"
         class="px-4 py-2 capitalize md:text-lg text-sm  font-semibold border-b-2 -mb-px transition">
         معلومات
         </button>
-        <button 
-        @click="tab = 'reviews'" 
-        :class="tab === 'reviews' ? 'border-theme-3 text-theme-3' : 'border-transparent text-gray-400 hover:text-theme-3'" 
+        <button
+        @click="tab = 'reviews'"
+        :class="tab === 'reviews' ? 'border-theme-3 text-theme-3' : 'border-transparent text-gray-400 hover:text-theme-3'"
         class="px-4 py-2 capitalize md:text-lg text-sm  font-semibold border-b-2 -mb-px transition">
         التقييمات
         </button>
-        <button 
-        @click="tab = 'teacher'" 
-        :class="tab === 'teacher' ? 'border-theme-3 text-theme-3' : 'border-transparent text-gray-400 hover:text-theme-3'" 
+        <button
+        @click="tab = 'teacher'"
+        :class="tab === 'teacher' ? 'border-theme-3 text-theme-3' : 'border-transparent text-gray-400 hover:text-theme-3'"
         class="px-4 py-2 capitalize md:text-lg text-sm  font-semibold border-b-2 -mb-px transition">
         المعلم
         </button>
-         <button 
-        @click="tab = 'description'" 
-        :class="tab === 'description' ? 'border-theme-3 text-theme-3' : 'border-transparent text-gray-400 hover:text-theme-3'" 
+         <button
+        @click="tab = 'description'"
+        :class="tab === 'description' ? 'border-theme-3 text-theme-3' : 'border-transparent text-gray-400 hover:text-theme-3'"
         class="px-4 py-2 capitalize md:text-lg text-sm  font-semibold border-b-2 -mb-px transition">
         الوصف
         </button>
        </div>
-       <a href="{{url('course')}}" class="float-start md:text-lg text-sm  bg-theme-3 hover:bg-theme-2 py-2 md:px-3 px-1  mb-2 rounded-full text-h3 ">{{__('lang.Enroll Now')}}</a>
+       <a href="{{url('course')}}" class="float-start md:text-lg text-sm  bg-theme-3 hover:bg-theme-2 py-2 md:px-3 px-1 text-white  mb-2 rounded-full text-h3 ">{{__('lang.Enroll Now')}}</a>
     </div>
 
     <div>
@@ -49,12 +49,12 @@
                 <button  @click="open = !open"
                     class="  w-full text-right font-semibold flex justify-between  p-2 rounded hover:bg-gray-200 transition"
                     :class="{ 'bg-theme-6': open,    'hover:bg-gray-200': !open }" >
-                   <span class="flex text-lg md:text-xl"> <span class="mx-2"> @include('icons.layers') </span> content {{$i}}</span> 
+                   <span class="flex text-lg md:text-xl"> <span class="mx-2"> @include('icons.layers') </span> content {{$i}}</span>
                    <span :class="{ 'rotate-180': open }" class="inline-block transform transition-transform duration-300">
                     <svg class="w-4 h-4 transform transition-transform" :class="{'rotate-180': topic.id === openTopicId}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
-                   </span> 
+                   </span>
                 </button>
 
                 <!-- Collapsible Content -->
@@ -66,7 +66,7 @@
                          <span class="mx-2">@include('icons.edu-scroll')</span> <span> 3</span>
                         </li>
 
-                        
+
                     </ul>
                 </div>
             </div>
@@ -78,7 +78,7 @@
         <div x-show="tab === 'reviews'" class="p-4 bg-white rounded shadow">
           <h2 class="text-xl font-bold mb-2">تقييمات الطلاب</h2>
            @php
-            $averageRating =4.66; 
+            $averageRating =4.66;
            @endphp
           <div class=" px-4 py-8">
             <!-- متوسط التقييم -->
@@ -89,7 +89,7 @@
                         @if ($j <= floor($averageRating))
                             <span>★</span>
                         @elseif ($j - $averageRating < 1)
-                            <span class="rtl:rotate-180">@include('icons.star-half')</span> 
+                            <span class="rtl:rotate-180">@include('icons.star-half')</span>
                         @else
                             <span class="text-gray-300">★</span>
                         @endif
@@ -127,7 +127,7 @@
                         </div>
                         <p class="text-gray-700">افضل كورس اشتركت فيه </p>
                     </div>
-                
+
                 @endfor
             </div>
           </div>
@@ -138,8 +138,8 @@
           <h2 class="text-xl font-bold mb-2">معلومات المعلم</h2>
             <div class="grid grid-cols-5">
              <img src="{{asset('images/man.png')}}" alt="teacher image " class="h-[30vh] w-[30vh] rounded-lg sm:col-span-1 col-span-2">
-           
-             <div class="space-y-3 p-4  sm:col-span-4 col-span-3">   
+
+             <div class="space-y-3 p-4  sm:col-span-4 col-span-3">
                <h2 class="text-xl font-bold capitalize mb-4 text-theme-2"> teacher  name </h2>
                <h2 class="text-xl font-bold capitalize mb-4 text-theme-2"> teacher  experience  </h2>
 
@@ -153,7 +153,7 @@
           <h2 class="text-xl font-bold mb-2 capitalize" >  {{__('lang.description') }}</h2>
             <div class="">
               <p>is optimized for learning and training. Examples might be simplified to improve reading and learning. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content</p>
-             
+
             </div>
         </div>
     </div>

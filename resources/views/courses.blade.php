@@ -10,7 +10,31 @@
         <aside class="md:w-1/4 w-full  bg-theme-5 text-h2 p-4 rounded-lg shadow space-y-4">
             <h1 class="text-3xl text-center font-bolder capitalize">{{__('lang.filter your course')}}</h1>
             <form method="GET" action="" class="space-y-4" x-data="{ price: '{{ request('price') }}' }" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                <div>
+                    <label class="block font-bold mb-1">الصف الدراسي</label>
+                    <select name="grade" class="w-full border border-input text-theme-2 focus:border-input rounded-lg px-2 py-1 rtl:rtl-select" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                        <option value="">الكل</option>
+                        <option value=""> الصف الاول الاعدادي</option>
+                        <option value="">الصف الثالث الثانوي</option>
+                        {{--
+                        @foreach($grades as $grade)
+                            <option value="{{ $grade->id }}" {{ request('grade') == $grade->id ? 'selected' : '' }}>{{ $grade->name }}</option>
+                        @endforeach
+                        --}}
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">المادة</label>
+                    <select name="teacher" class="w-full border text-theme-2 focus:border-input rounded px-2 py-1 rtl:rtl-select ">
+                        <option value="">الكل</option>
+                        <option value=""> فيزياء</option>
+                        <option value="">كيمياء</option>
 
+                        {{-- @foreach($subjects as $subject)
+                            <option value="{{ $subject->id }}" {{ request('subject') == $subject->id ? 'selected' : '' }}>{{ $subject->name }}</option>
+                        @endforeach --}}
+                    </select>
+                </div>
 
                 <div>
                     <label class="block font-bold mb-1">المدرس</label>

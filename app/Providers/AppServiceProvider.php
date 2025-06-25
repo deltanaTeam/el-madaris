@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Grade;
+use App\Models\Level;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -23,10 +23,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
       Schema::defaultStringLength(191);
-      $grades = Grade::all();
-      // $style_img = app()->getLocale() === 'en' ?  'transform -scale-x-100':'';
-      //
-      //
+     $grades = Level::all();
+
        View::share('grades',$grades);
 
     }

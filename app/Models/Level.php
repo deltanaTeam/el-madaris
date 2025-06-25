@@ -5,23 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
-class Subject extends Model
+class Level extends Model
 {
     use HasFactory;
     use HasTranslations;
-    public $timestamps = false;
-    protected $table = 'subjects';
+    protected $table = 'levels';
 
     protected $fillable = ['name','description'];
     public $translatable = ['name','description'];
+    public $timestamps = false;
 
-    public function levels()
+    public function subjects()
     {
-        return $this->belongsToMany(Level::class,'level_subject');
-    }
-
-    public function teachers()
-    {
-        return $this->hasMany(User::class,'teacher_id');
+        return $this->belongsToMany(Subject::class,'level_subject');
     }
 }

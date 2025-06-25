@@ -13,12 +13,17 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+            $table->string('name');// en,ar
+
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('subject_id')->constrained()->onDelete('cascade'); //specialization
+
             $table->string('cv')->nullable();
-            $table->text('experience')->nullable();
-            $table->string('specialization')->nullable();
+            $table->unsignedInteger('experience')->nullable();
             $table->string('address')->nullable();
             $table->string('image')->nullable();
+            $table->enum('status',['pending','approved','rejected'])->default('pending');
+
             $table->timestamps();
         });
     }

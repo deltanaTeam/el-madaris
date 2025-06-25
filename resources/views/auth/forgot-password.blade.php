@@ -5,7 +5,7 @@
 @section('content')
 <main class="flex justify-center px-1 py-1">
 
-  <div class="w-full max-w-3xl rounded-[2vw]  my-3 px-8 py-4 sm:p-12 transition-all duration-300 ease-in-out bg-theme shadow-md p-8 sm:p-12 border border-lime-500 dark:border-white" >
+  <div class="w-full max-w-3xl rounded-[2vw]  my-3 px-8 py-4 sm:p-12 transition-all duration-300 ease-in-out bg-white shadow-md p-8 sm:p-12 " >
     <div class=" flex  justify-center">
       <img src="{{asset('images/logo.png')}}" alt="logo" class="h-64" >
 
@@ -24,7 +24,7 @@
         <!-- Email Address -->
         <div>
           <label for="email" class="block text-sm text-h1 font-medium mb-1">{{__('lang.email')}}</label>
-          <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-lime-500  focus:border-input"
+          <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-form-input  focus:border-input"
             placeholder="you@example.com" />
         </div>
 

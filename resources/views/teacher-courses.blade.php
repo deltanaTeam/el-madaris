@@ -10,19 +10,33 @@
         <aside class="md:w-1/4 w-full  bg-theme-5 text-h2 p-4 rounded-lg shadow space-y-4">
             <h1 class="text-3xl text-center font-bolder capitalize">{{__('lang.filter your course')}}</h1>
             <form method="GET" action="" class="space-y-4" x-data="{ price: '{{ request('price') }}' }" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
-
-
                 <div>
-                    <label class="block font-bold mb-1">المدرس</label>
+                    <label class="block font-bold mb-1">الصف الدراسي</label>
+                    <select name="grade" class="w-full border border-input text-theme-2 focus:border-input rounded-lg px-2 py-1 rtl:rtl-select" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                        <option value="">الكل</option>
+                        <option value=""> الصف الاول الاعدادي</option>
+                        <option value="">الصف الثالث الثانوي</option>
+                        {{--
+                        @foreach($grades as $grade)
+                            <option value="{{ $grade->id }}" {{ request('grade') == $grade->id ? 'selected' : '' }}>{{ $grade->name }}</option>
+                        @endforeach
+                        --}}
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">المادة</label>
                     <select name="teacher" class="w-full border text-theme-2 focus:border-input rounded px-2 py-1 rtl:rtl-select ">
                         <option value="">الكل</option>
-                        <option value=""> محمد احمد</option>
-                        <option value=""> علي محمد</option>
-                        {{-- @foreach($teachers as $teacher)
-                            <option value="{{ $teacher->id }}" {{ request('teacher') == $teacher->id ? 'selected' : '' }}>{{ $teacher->name }}</option>
+                        <option value=""> فيزياء</option>
+                        <option value="">كيمياء</option>
+
+                        {{-- @foreach($subjects as $subject)
+                            <option value="{{ $subject->id }}" {{ request('subject') == $subject->id ? 'selected' : '' }}>{{ $subject->name }}</option>
                         @endforeach --}}
                     </select>
                 </div>
+
+
 
                 <div>
                     <label class="block font-bold mb-1">السعر</label>
@@ -67,16 +81,18 @@
         </aside>
 
         <main class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6">
-            @for($j=1;$j<10 ;$j++ )
-            @php  $m= rand(1,3) ;@endphp
-                <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-md transition">
-                  <div class="relative w-full rounded-lg">
+            @for($j=1; $j<10 ; $j++ )
+@php  $m = rand(1,3) ; @endphp
 
-                    <img src='{{asset("images/{$m}.gif")}}' alt="jhfjr" class="@if(app()->getLocale() === 'en') transform -scale-x-100 @endif w-full md:h-48 h-auto object-cover">
-                    <div class="absolute  p-2 inset-0 flex items-center justify-end text-center text-white font-bold">
-                        <h1 class="text-3xl p-2"> كورسات مدرستك</h1>
-                    </div>
-                  </div>                    <div class="p-4 space-y-2">
+                <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-md transition">
+<div class="relative w-full rounded-lg">
+
+  <img src='{{asset("images/{$m}.gif")}}' alt="jhfjr" class="@if(app()->getLocale() === 'en') transform -scale-x-100 @endif w-full md:h-48 h-auto object-cover">
+  <div class="absolute  p-2 inset-0 flex items-center justify-end text-center text-white font-bold">
+      <h1 class="text-3xl p-2"> كورسات مدرستك</h1>
+  </div>
+</div>
+                    <div class="p-4 space-y-2">
                         <h2 class="text-lg font-bold">course name</h2>
                         <p class="text-sm text-gray-600">المدرس: </p>
                         <p class="text-sm text-gray-600">الصف: </p>

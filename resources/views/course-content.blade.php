@@ -39,38 +39,38 @@ $fakeData = [
   <aside class="side-theme  lg:col-span-2 lg:block min-h-screen  hidden  space-y-6  inset-y-0 start-0 transform lg:ms-3 md:ms-1  md:translate-x-0 transition duration-200 ease-in-out  shadow-lg p-4 overflow-y-auto; " id="sidebar">
     <h2 class="text-2xl text-center font-bold mb-4 text-h2">{{__('lang.course name')}}</h2>
     <button  @click="active = { type: null, data: {} }; currentContentId = null;"
-      class="  px-4 py-3 w-full rounded shadow hover:bg-gray-200/50 transition" 
+      class="  px-4 py-3 w-full rounded shadow hover:bg-sky-200 hover:text-sky-800 transition"
       :class="{
-    'bg-theme-3 text-white': !active.type,
-    ' hover:bg-gray-200/50': active.type
+    'bg-theme-1 text-white': !active.type,
+    ' hover:bg-sky-200 hover:text-sky-800': active.type
   }">
       {{__('lang.about course')}}
     </button>
-    <h2 class="text-xl font-bold mb-4 text-h2">{{__('lang.stages')}}</h2>
-    <div class="p-4 z-50 shadow-lg rounded-lg text-h3"> <a href="{{url('exam/results')}}" class="flex items-center space-x-2"> <span class="mx-2">@include('icons.circle-fill')</span> <span class="mx-2">{{__('lang.Test Scores')}}</span></a></div>
+    <h2 class="text-xl font-bold mb-4 text-h2">{{__('lang.topics')}}</h2>
+    <div class="p-4 z-50 shadow rounded-lg text-h3"> <a href="{{url('exam/results')}}" class="flex items-center space-x-2"> <span class="mx-2">@include('icons.circle-fill')</span> <span class="mx-2">{{__('lang.Test Scores')}}</span></a></div>
 
     <template x-for="topic in topics" :key="topic.id">
       <div class="mb-2">
         <!-- زر طي/فتح الموضوع -->
         <button @click="toggleTopic(topic.id)"
-          class="w-full py-4 px-4 text-start font-bold flex justify-between  shadow-lg rounded-lg text-h3 hover:bg-gray-50/50"
+          class="w-full py-4 px-4 text-start font-bold flex justify-between  shadow rounded-lg text-h3  hover:bg-gray-300 "
           :class="{ 'bg-gray-50 text-theme-3': topic.id === openTopicId }">
-                
+
                 <span x-text="topic.title"></span>
                 <span :class="{ 'rotate-90': open }" class="inline-block transform transition-transform duration-300">
                     <svg class="w-4 h-4 transform transition-transform" :class="{'rotate-90': topic.id === openTopicId}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
-                </span> 
+                </span>
 
         </button>
 
-       
-        <div x-show="topic.id === openTopicId" class="ps-2 mt-2 space-y-1  rounded-lg text-h3 w-full bg-gray-100/50">
+
+        <div x-show="topic.id === openTopicId" class="ps-2 mt-2 space-y-1  rounded-lg text-h3 w-full collapsed-content ">
           <template x-for="video in topic.videos" :key="video.id">
             <button @click="showContent('video', video)"
               class="side-sub-list w-full" :class="{
-                 'bg-theme-3 text-white': currentContentId === video.id, 
+                 'bg-theme-3 text-white': currentContentId === video.id,
                   'hover:bg-gray-300/50': currentContentId !== video.id}" >
               <span class="mx-1"> @include('icons.video2') </span> <span x-text="video.title"></span>
             </button>
@@ -79,7 +79,7 @@ $fakeData = [
           <template x-for="file in topic.files" :key="file.id">
             <button @click="showContent('file', file)"
               class="side-sub-list" :class="{
-                 'bg-theme-3 text-white': currentContentId === file.id, 
+                 'bg-theme-3 text-white': currentContentId === file.id,
                   'hover:bg-gray-300/50': currentContentId !== file.id}">
               <span class="mx-1"> @include('icons.file') </span> <span x-text="file.title"></span>
             </button>
@@ -88,7 +88,7 @@ $fakeData = [
           <template x-for="exam in topic.exams" :key="exam.id">
             <button @click="showContent('exam', exam)"
               class="side-sub-list" :class="{
-                 'bg-theme-3 text-white': currentContentId === exam.id, 
+                 'bg-theme-3 text-white': currentContentId === exam.id,
                   'hover:bg-gray-300/50': currentContentId !== exam.id}">
               <span class="mx-1"> @include('icons.edu-scroll') </span> <span x-text="exam.title"></span>
             </button>
@@ -103,8 +103,8 @@ $fakeData = [
     <template x-if="active.type === 'video'">
       <div>
         <h3 class="text-lg font-bold mb-2"><span x-text="active.data.title"></span></h3>
-        <video :src="active.data.url" 
-          controls  class="w-full rounded shadow" controlsList="nodownload" @contextmenu.preventw"></video>
+        <video :src="active.data.url"
+          controls  class="w-full rounded shadow" controlsList="nodownload" @contextmenu.preventw></video>
       </div>
     </template>
 
@@ -112,7 +112,7 @@ $fakeData = [
       <div >
 
         <h3 class="text-lg font-bold mb-2"><span x-text="active.data.title"></span></h3>
-        <iframe   :src="active.data.url" class="w-full h-[500px] rounded shadow"  style="border: none;" 
+        <iframe   :src="active.data.url" class="w-full h-[500px] rounded shadow"  style="border: none;"
           oncontextmenu="return false;"></iframe>
       </div>
     </template>
@@ -131,7 +131,7 @@ $fakeData = [
             <h2 class="text-2xl font-bold capitalize mb-8 text-theme-2"> what you will learn in this course  </h2>
 
             <ul class="space-y-3 px-4">
-              
+
               {{-- course objectives --}}
               <li class="flex items-start text-xl">
                 <span class="me-2 mt-1">@include('icons.circle')</span> <span class="">icon</span>
@@ -149,15 +149,15 @@ $fakeData = [
                 <span class="me-2 mt-1">@include('icons.circle')</span> <span class="">icon</span>
                 objective 4
               </li>
-              
+
               <li class="flex items-start text-xl">
                 <span class="me-2 mt-1">@include('icons.circle')</span> <span class="">icon</span>
                 objective 5
               </li>
-              
-              
-              
-                
+
+
+
+
             </ul>
           </div>
           <div class="py-6 px-6 rounded-lg  bg-white text-theme-2 my-4 ">
@@ -201,9 +201,9 @@ $fakeData = [
               </div>
             <!-- end stars -->
               <!-- begin comment -->
-              <p class="text-center text-sm text-gray-600 mb-4" > {{__('lang.your rate')}}  <span x-text="rating"></span> {{__('lang.stars')}}</p> 
+              <p class="text-center text-sm text-gray-600 mb-4" > {{__('lang.your rate')}}  <span x-text="rating"></span> {{__('lang.stars')}}</p>
 
-              <textarea 
+              <textarea
                 x-model="comment"
                 rows="4"
                 placeholder="اكتب تعليقك هنا..."
@@ -211,7 +211,7 @@ $fakeData = [
               ></textarea>
              <!-- end comment -->
 
-              <button 
+              <button
                 @click="submitRating()"
                 class="w-full bg-theme-3 text-white py-2 px-4 rounded hover:bg-theme-2 transition">
                  {{__('lang.save')}}
@@ -225,9 +225,9 @@ $fakeData = [
             </script>
 
           </div>
-         
+
       </div>
-      
+
     </template>
   </main>
 </div>
@@ -241,7 +241,7 @@ $fakeData = [
     function toggleSidebar(){
      const sidebar = document.getElementById('sidebar');
 
-     
+
       if(sidebar.classList.contains('block')){
         sidebar.classList.remove('block');
         sidebar.classList.add('hidden');
@@ -263,7 +263,7 @@ $fakeData = [
         sidebar.classList.add('ms-6');
         sidebar.classList.add('me-4');
      }
-    
+
     }
 function courseViewer() {
   return {
@@ -289,7 +289,7 @@ function courseViewer() {
       if (type === 'exam') {
         this.currentContentId = data.id;
       }
-      
+
     }
   }
 }

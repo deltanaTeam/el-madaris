@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subject_stages', function (Blueprint $table) {
+        Schema::create('options', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->integer('order')->default(1);
+            $table->foreignId('question_id')->constrained()->onDelete('cascade');
+
+            $table->text('text');
+            $table->boolean('is_correct')->default(false);
 
             $table->timestamps();
         });
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subject_stages');
+        Schema::dropIfExists('options');
     }
 };

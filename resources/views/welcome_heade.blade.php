@@ -13,7 +13,7 @@
 
              </div>
 
-             
+
 
              <!-- btn (Mobile) -->
              <div class="lg:hidden flex items-start">
@@ -33,15 +33,15 @@
                 <button class="button-header mt-1 ms-1 focus:outline-none  lg:hidden md:block block" @click="toggleSidebar()"> @include('icons.intent')</button>
                  @endif
              </div>
-             
+
 
              <!-- Desktop Links -->
              <div class="hidden md:flex md:items-center md:space-x-4 rtl:space-x-reverse">
 
-              
-             
+
+
                <!-- grades Dropdown -->
-               
+
                <!-- end grades Dropdown -->
                  <a href="{{route('home')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{ __('lang.home') }}</a>
                  <a href="{{url('/courses')}}" class="button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 capitalize">{{ __('lang.courses') }}</a>
@@ -65,6 +65,9 @@
                          class="block px-4 py-2 hover:bg-theme-4 text-theme-2">{{ $grade->name }}</a>
 
                        @empty
+                       <a href="{{url('subjects')}}"
+                          class="block px-4 py-2 hover:bg-theme-4 text-theme-2">الصف الثاني الثانوي</a>
+
                        @endforelse
                   </div>
                </div>
@@ -100,20 +103,23 @@
                   </div>
                </div>
                <!-- end Language Dropdown -->
-              
+
 
              </div>
          </div>
 
          <!-- Mobile Menu (Toggles) -->
          <div x-show="open" class="md:hidden mt-4 space-y-2">
-           <button onclick="toggleTheme()">
-              @include('layouts.icons.dark_mode') @include('layouts.icons.light-mode')
+           <button onclick="toggleTheme()" class=" button-header rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
+             <span class="w-6 h-6 block dark:hidden ">&#263C;</span>   <span class="w-6 h-6 hidden dark:block">&#263E;</span>
+
+           {{--  @include('layouts.icons.dark_mode') @include('layouts.icons.light-mode') --}}
+
           </button>
            <!-- Language Dropdown -->
            <div x-data="{ langOpen: false }" class="relative  w-full p-end-6/10">
               <a @click="langOpen = !langOpen"
-                      class=" block flex items-center  hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
+                      class=" block flex items-center  hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1  transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
                    {{ app()->getLocale() === 'ar' ? 'ع' : 'EN' }}
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -126,7 +132,7 @@
                   @forelse(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
 
                       <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
-                         class="block px-4 py-2 hover:bg-theme-4 text-theme-1">{{ $properties['native'] }}</a>
+                         class="block px-4 py-2 hover:bg-theme-4 text-theme-1 text-md">{{ $properties['native'] }}</a>
 
                   @empty
                   @endforelse
@@ -136,7 +142,7 @@
            <!-- grad Dropdown -->
            <div x-data="{ gradOpen: false }" class="relative  w-full p-end-6/10">
               <a @click="gradOpen = !gradOpen"
-                      class=" block flex items-center  hover:bg-theme-3 hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
+                      class=" block flex items-center  hover:bg-theme-3  hover:text-theme-1 rounded-md px-3 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700">
                    {{ __('lang.grades')}}
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -149,7 +155,7 @@
                     @forelse($grades as $grade)
 
                       <a href="{{route('grades.show',$grade->id)}}"
-                         class="block px-4 py-2 hover:bg-theme-4 text-theme-1">{{ $grade->name }}</a>
+                         class="block px-4 py-2 hover:bg-theme-4  text-sm text-theme-1">{{ $grade->name }}</a>
 
                     @empty
                     @endforelse
